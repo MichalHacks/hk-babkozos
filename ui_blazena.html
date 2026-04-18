@@ -8,6 +8,8 @@
 		<link rel="stylesheet" href="./ui_lubo_fyp.css">
 		<link rel="stylesheet" href="./ui_lubo_profile.css">
 		<link rel="stylesheet" href="./ui_blazena_new.css">
+
+		<link rel="stylesheet" href="./material_symbols.css" />
 	</head>
 	<body>
 		<div class="app">
@@ -69,9 +71,9 @@
 				</div>
 			</div>
 			<div class="bottom-bar">
-				<div class="tab active" data-view="blazena">New Demand</div>
-				<div class="tab" data-view="relevant">My Demands</div>
-				<div class="tab" data-view="profile">Profile</div>
+				<div class="tab active" data-view="blazena"><span class="material-symbols-outlined">waving_hand</span> New Demand</div>
+				<div class="tab" data-view="relevant"><span class="material-symbols-outlined">notifications_active</span> My Demands</div>
+				<div class="tab" data-view="profile"><span class="material-symbols-outlined">account_circle</span> Profile</div>
 			</div>
 		</div>
 		<script>
@@ -117,8 +119,8 @@
 						</div>
 					</div>
 					<div class="card-actions">
-						<button class="action-btn edit">Edit</button>
-						<button class="action-btn delete">Delete</button>
+						<button class="action-btn edit"><span class="material-symbols-outlined">edit_square</span> Edit</button>
+						<button class="action-btn delete"><span class="material-symbols-outlined">close</span> Delete</button>
 					</div>
   				`;
 				return el;

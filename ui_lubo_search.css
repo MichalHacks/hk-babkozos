@@ -126,6 +126,46 @@
 	background: #eee;
 }
 
+/* ===== CARD ACTION BAR ===== */
+
+#view-search .card-actions {
+	display: flex;
+	width: 100%;
+	border-top: 1px solid var(--border);
+	background: transparent;
+}
+
+#view-search .action-btn {
+	flex: 1;
+	padding: 10px 0;
+	font-size: 12px;
+	font-weight: 600;
+
+	background: transparent;
+	border: none;
+
+	color: var(--accent);
+	cursor: pointer;
+
+	transition: background 0.15s ease, color 0.15s ease;
+}
+
+/* hover swap effect */
+#view-search .action-btn:hover {
+	background: var(--accent);
+	color: #fff;
+}
+
+/* active press */
+#view-search .action-btn:active {
+	filter: brightness(80%);
+}
+
+/* optional subtle separation */
+#view-search .action-btn + .action-btn {
+	border-left: 1px solid var(--border);
+}
+
 @media (max-width: 480px) {
 	#view-search .card-body {
 		flex-direction: column;

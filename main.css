@@ -17,7 +17,7 @@
 	--gap: 12px;
 
 	--blur: blur(12px);
-	--opacity_pc: 20%;
+	--opacity_pc: 25%;
 	
 	--topbar-height: 50px;
 	--botbar-height: 60px;
@@ -41,6 +41,11 @@
 .btn-success { color: var(--color-success); }
 .btn-warning { color: var(--color-warning); }
 .btn-danger { color: var(--color-danger); }
+
+/* ===== ICONS ===== */
+
+
+
 
 /* ===== BASE ===== */
 * {
