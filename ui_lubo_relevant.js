@@ -16,26 +16,46 @@
 
 	/* CARD GENERATOR */
 	const data = [{
-		title: "Frontend UI Help",
-		username: "john_doe",
-		desc: "Looking for help with responsive layout.",
-		tags: ["tech", "ui"],
-		location: "Košice",
-		contact: "john@mail.com",
-		extra: "Remote",
-		img: "https://picsum.photos/400/200",
-		user: "https://i.pravatar.cc/40?img=1"
-	}, {
-		title: "Design Feedback",
-		username: "anna_design",
-		desc: "Need critique on mobile app.",
-		tags: ["design"],
-		location: "Prague",
-		contact: "anna@mail.com",
-		extra: "Freelance",
-		img: "https://picsum.photos/400/201",
-		user: "https://i.pravatar.cc/40?img=2"
-	}];
+			title: "Frontend UI Help",
+			username: "john_doe",
+			desc: "Looking for help with responsive layout.",
+			tags: ["tech", "ui"],
+			location: "Košice",
+			contact: "john@mail.com",
+			extra: "Remote",
+			img: "https://picsum.photos/400/200",
+			user: "https://i.pravatar.cc/40?img=1"
+		}, {
+			title: "Design Feedback",
+			username: "anna_design",
+			desc: "Need critique on mobile app.",
+			tags: ["design"],
+			location: "Prague",
+			contact: "anna@mail.com",
+			extra: "Freelance",
+			img: "https://picsum.photos/400/201",
+			user: "https://i.pravatar.cc/40?img=2"
+		}, {
+			title: "Design Feedback",
+			username: "anna_design",
+			desc: "Need critique on mobile app.",
+			tags: ["design"],
+			location: "Prague",
+			contact: "anna@mail.com",
+			extra: "Freelance",
+			img: "https://picsum.photos/400/202",
+			user: "https://i.pravatar.cc/40?img=2"
+		}, {
+			title: "Design Feedback",
+			username: "anna_design",
+			desc: "Need critique on mobile app.",
+			tags: ["design"],
+			location: "Prague",
+			contact: "anna@mail.com",
+			extra: "Freelance",
+			img: "https://picsum.photos/400/203",
+			user: "https://i.pravatar.cc/40?img=2"
+		}];
 
 	function createCard(item) {
 		const el = document.createElement("div");

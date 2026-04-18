@@ -17,7 +17,7 @@
 	--gap: 12px;
 
 	--blur: blur(15px);
-	--opacity_pc: 40%;
+	--opacity_pc: 50%;
 	
 	--topbar-height: 50px;
 	--botbar-height: 60px;
@@ -172,7 +172,6 @@ body {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: #fff1;
 	box-shadow: inset -10px -8px 15px -6px #fff,
 				   inset 0px -5px 15px -6px #fff;
 	opacity: 0.4;
@@ -205,7 +204,7 @@ body {
       rgba(187,187,187,0.13) 74.5% 79%, rgba(0,0,0,0.13) 80% 84%,
       rgba(170,170,170,0.13) 85% 86%, rgba(0,0,0,0.13) 87%, rgba(187,187,187,0.07) 90%
     ) left center / 100vw 100vh no-repeat fixed;
-	opacity: 0.3;
+	opacity: 0.2;
 }
 
 .glass .tab {
