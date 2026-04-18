@@ -23,7 +23,7 @@
 		location: "Košice",
 		contact: "john@mail.com",
 		extra: "Remote",
-		img: "https://picsum.photos/400/200",
+		images: ["https://picsum.photos/400/200", "https://picsum.photos/400/210"],
 		user: "https://i.pravatar.cc/40?img=1"
 	}, {
 		title: "Design Feedback",
@@ -33,15 +33,15 @@
 		location: "Prague",
 		contact: "anna@mail.com",
 		extra: "Freelance",
-		img: "https://picsum.photos/400/201",
+		images: ["https://picsum.photos/400/201", "https://picsum.photos/400/211", "https://picsum.photos/400/220"],
 		user: "https://i.pravatar.cc/40?img=2"
 	}];
 
 	function createCard(item) {
 		const el = document.createElement("div");
 		el.className = "card";
-		el.innerHTML = `
-			<img class="main-img" src="${item.img}">
+		el.appendChild(buildCarousel(item.images));
+		el.insertAdjacentHTML("beforeend", `
 			<div class="card-content">
 				<div class="user-row">
 					<img class="avatar" src="${item.user}">
@@ -67,7 +67,7 @@
 			<div class="card-actions">
 				<button class="action-btn take"><span class="material-symbols-outlined">check</span> Take</button>
 			</div>
-		`;
+		`);
 		return el;
 	}
 
@@ -92,14 +92,17 @@
 			const matchTag = !activeTag || item.tags.includes(activeTag);
 			return matchText && matchTag;
 		});
-		renderList("search-list", filtered);
+		const container = VIEW.querySelector("#search-list");
+		container.innerHTML = "";
+		filtered.forEach(item => container.appendChild(createCard(item)));
 	}
 
 	/* INITIALIZE */
-	function init() {		
+	function init() {
 		// reset search
 		searchFilters.forEach(f => f.classList.remove("active"));
 		searchInput.value = "";
+		activeTag = null;
 
 		const container = VIEW.querySelector("#search-list");
 		container.innerHTML = "";

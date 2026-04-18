@@ -28,49 +28,37 @@
 		title: "Frontend UI Help",
 		username: "john_doe",
 		desc: "Looking for help with responsive layout.",
-		tags: ["tech", "ui"],
 		location: "Košice",
-		contact: "john@mail.com",
-		extra: "Remote",
-		img: "https://picsum.photos/400/200",
+		images: ["https://picsum.photos/400/200", "https://picsum.photos/400/210"],
 		user: "https://i.pravatar.cc/40?img=1"
 	}, {
 		title: "Design Feedback",
 		username: "anna_design",
 		desc: "Need critique on mobile app.",
-		tags: ["design"],
 		location: "Prague",
-		contact: "anna@mail.com",
-		extra: "Freelance",
-		img: "https://picsum.photos/400/201",
+		images: ["https://picsum.photos/400/201", "https://picsum.photos/400/211", "https://picsum.photos/400/220"],
 		user: "https://i.pravatar.cc/40?img=2"
 	}, {
-		title: "Design Feedback",
-		username: "anna_design",
-		desc: "Need critique on mobile app.",
-		tags: ["design"],
-		location: "Prague",
-		contact: "anna@mail.com",
-		extra: "Freelance",
-		img: "https://picsum.photos/400/202",
-		user: "https://i.pravatar.cc/40?img=2"
+		title: "Garden Help",
+		username: "peter_green",
+		desc: "Need someone to trim hedges.",
+		location: "Bratislava",
+		images: ["https://picsum.photos/400/202"],
+		user: "https://i.pravatar.cc/40?img=3"
 	}, {
-		title: "Design Feedback",
-		username: "anna_design",
-		desc: "Need critique on mobile app.",
-		tags: ["design"],
-		location: "Prague",
-		contact: "anna@mail.com",
-		extra: "Freelance",
-		img: "https://picsum.photos/400/203",
-		user: "https://i.pravatar.cc/40?img=2"
+		title: "Moving Boxes",
+		username: "maria_k",
+		desc: "Help needed moving furniture.",
+		location: "Vienna",
+		images: ["https://picsum.photos/400/203", "https://picsum.photos/400/213"],
+		user: "https://i.pravatar.cc/40?img=4"
 	}];
 
 	function createCard(item) {
 		const el = document.createElement("div");
 		el.className = "card";
-		el.innerHTML = `
-			<img class="main-img" src="${item.img}">
+		el.appendChild(buildCarousel(item.images));
+		el.insertAdjacentHTML("beforeend", `
 			<div class="card-content">
 				<div class="user-row">
 					<img class="avatar" src="${item.user}">
@@ -88,7 +76,7 @@
 				<button class="action-btn edit"><span class="material-symbols-outlined">edit_square</span> Edit</button>
 				<button class="action-btn delete"><span class="material-symbols-outlined">close</span> Delete</button>
 			</div>
-		`;
+		`);
 		return el;
 	}
 
