@@ -19,28 +19,122 @@
 			<div class="main">
 				<!-- NEW INZERAT -->
 				<div id="view-blazena" class="view active">
-					<div class="blazena-grid">
-						<div class="blazena-item">
-							<span class="big">🪏</span>
-							<span>Zahradne prace</span>
-						</div>
-						<div class="blazena-item">
-							<span class="big">🛒</span>
-							<span>Nakupy</span>
-						</div>
-						<div class="blazena-item">
-							<span class="big">📦</span>
-							<span>Prenasanie</span>
-						</div>
-						<div class="blazena-item">
-							<span class="big">⚙️</span>
-							<span>Nastavenie mobilu</span>
-						</div>
-						<div class="blazena-item">
-							<span class="big">🦽</span>
-							<span>Prechadzka</span>
-						</div>
-					</div>
+				
+					<!-- breadcrumb / local tabs -->
+					<div class="blazena-tabs" id="blazena-tabs"></div>
+				
+					<!-- grid container -->
+					<div class="blazena-grid" id="blazena-grid"></div>
+				
+					<script>
+						(() => {
+
+							/* ===== HIERARCHICAL DATA TREE ===== */
+							const tree = {
+								root: {
+									title: "Start",
+									items: {
+										garden: {
+											label: "Záhrada",
+											icon: "🪏",
+											items: {
+												hedge: { label: "Strihanie živého plota", icon: "✂️" },
+												water: { label: "Polievanie", icon: "💧" },
+												clean: { label: "Čistenie záhrady", icon: "🧹" }
+											}
+										},
+										shopping: {
+											label: "Nákupy",
+											icon: "🛒",
+											items: {
+												food: { label: "Potraviny", icon: "🥦" },
+												home: { label: "Domáce potreby", icon: "🧴" }
+											}
+										},
+										moving: {
+											label: "Prenášanie",
+											icon: "📦",
+											items: {
+												boxes: { label: "Krabice", icon: "📦" },
+												furniture: { label: "Nábytok", icon: "🪑" }
+											}
+										}
+									}
+								}
+							};
+
+							let path = ["root"];
+
+							document.getElementById("view-blazena").init = () => {
+								path = ["root"];
+								render();
+							}
+
+							const grid = document.getElementById("blazena-grid");
+							const tabs = document.getElementById("blazena-tabs");
+
+							function getNode(pathArr) {
+								return pathArr.reduce((acc, key) => acc.items?.[key] || acc, tree.root);
+							}
+
+							function addItem(item, click) {
+								const el = document.createElement("div");
+								el.className = "blazena-item";
+
+								el.innerHTML = `
+									<span class="big">${item.icon || "📁"}</span>
+									<span>${item.label}</span>
+								`;
+
+								el.onclick = click;
+
+								grid.appendChild(el);
+
+								return el;
+							}
+
+							function render() {
+								const node = getNode(path);
+
+								/* GRID */
+								grid.innerHTML = "";
+
+								Object.entries(node.items || {}).forEach(([key, item]) => {
+									addItem(item, () => {
+										if (item.items) {
+											path.push(key);
+											render();
+										}
+									});
+								});
+
+								if (path.length > 1) {
+									addItem({icon: "⬅", label: "Back"}, () => {path.pop(); render()})
+								}
+
+								/* TABS (breadcrumb-style) */
+								tabs.innerHTML = "";
+
+								path.forEach((p, i) => {
+									const btn = document.createElement("div");
+									btn.className = "blazena-tab";
+									btn.textContent = p;
+
+									btn.onclick = () => {
+										path = path.slice(0, i + 1);
+										render();
+									};
+
+									tabs.appendChild(btn);
+									
+									if (i < path.length - 1)
+										tabs.insertAdjacentHTML("beforeend", `<span class="material-symbols-outlined">chevron_right</span>`)
+								});
+							}
+
+							render();
+						})();
+					</script>
 				</div>
 				<!-- RELEVANT -->
 				<div id="view-relevant" class="view">
@@ -144,6 +238,7 @@
 					document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
 					tab.classList.add("active");
 					document.getElementById("view-" + tab.dataset.view).classList.add("active");
+					document.getElementById("view-" + tab.dataset.view)?.init?.call();
 				};
 			});
 		</script>

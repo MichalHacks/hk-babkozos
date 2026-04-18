@@ -15,6 +15,7 @@
 #view-blazena .blazena-item {
 	background: var(--card);
 	border: 1px solid var(--border);
+	padding: var(--pad);
 	border-radius: 18px;
 
 	aspect-ratio: 1 / 1;
@@ -60,4 +61,36 @@
 	#view-blazena .blazena-grid {
 		grid-template-columns: repeat(4, 1fr);
 	}
+}
+
+/* ===== BLAZENA NAV (breadcrumb tabs) ===== */
+
+#view-blazena .blazena-tabs {
+	display: flex;
+	margin-bottom: 12px;
+	overflow-x: auto;
+	padding-bottom: 4px;
+}
+
+#view-blazena .blazena-tab {
+	padding: 6px 10px;
+	font-size: 12px;
+	border-radius: 999px;
+	border: 1px solid var(--border);
+	background: var(--card);
+	cursor: pointer;
+	white-space: nowrap;
+	user-select: none;
+	transition: background 0.15s ease, color 0.15s ease;
+}
+
+#view-blazena .blazena-tab:active {
+	transform: scale(0.97);
+}
+
+/* optional active breadcrumb state (if you want later) */
+#view-blazena .blazena-tab.active {
+	background: var(--accent);
+	color: #fff;
+	border-color: var(--accent);
 }
