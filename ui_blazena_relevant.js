@@ -81,20 +81,12 @@
 					<div class="left">
 						<div class="title">${item.title}</div>
 						<div class="desc">${item.desc}</div>
-						<div class="tags">
-							${item.tags.map(t => `<div class="tag">${t}</div>`).join("")}
-						</div>
-					</div>
-
-					<div class="right">
-						<div class="meta">${item.location}</div>
-						<div class="meta">${item.contact}</div>
-						<div class="meta">${item.extra}</div>
 					</div>
 				</div>
 			</div>
 			<div class="card-actions">
-				<button class="action-btn take"><span class="material-symbols-outlined">check</span> Take</button>
+				<button class="action-btn edit"><span class="material-symbols-outlined">edit_square</span> Edit</button>
+				<button class="action-btn delete"><span class="material-symbols-outlined">close</span> Delete</button>
 			</div>
 		`;
 		return el;
