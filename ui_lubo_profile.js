@@ -38,7 +38,7 @@ function parseCategories(categories) {
 			console.log("Profile data:", profileData);
 			VIEW.insertAdjacentHTML("afterbegin", `
 		<div class="profile-container">
-			<div class="profile-header">
+			<div class="profile-header glass">
 				<div class="profile-avatar">${getInitials(profileData.name)}</div>
 				<h1 class="profile-name">${profileData.name}</h1>
 			</div>

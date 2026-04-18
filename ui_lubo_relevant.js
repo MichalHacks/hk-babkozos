@@ -61,26 +61,22 @@
 		const el = document.createElement("div");
 		el.className = "card";
 		el.innerHTML = `
-			<img class="main-img" src="${item.img}">
+			${item.img ? `<img class="main-img" src="${item.img}">` : ""}
 			<div class="card-content">
 				<div class="user-row">
-					<img class="avatar" src="${item.user}">
-					<div class="username">${item.username}</div>
+					<img class="avatar" src="https://i.pravatar.cc/40?img=2">
+					<div class="username">${item.user.name}</div>
 				</div>
 
 				<div class="card-body">
 					<div class="left">
-						<div class="title">${item.title}</div>
-						<div class="desc">${item.desc}</div>
-						<div class="tags">
-							${item.tags.map(t => `<div class="tag">${t}</div>`).join("")}
-						</div>
+						<div class="title">${item.secondaryCategory.name}</div>
+						<div class="desc">${item.description}</div>
 					</div>
 
 					<div class="right">
 						<div class="meta">${item.location}</div>
-						<div class="meta">${item.contact}</div>
-						<div class="meta">${item.extra}</div>
+						<div class="meta">${item.user.phone}</div>
 					</div>
 				</div>
 			</div>
@@ -96,7 +92,27 @@
 	function init() {
 		const container = VIEW.querySelector("#relevant-list");
 		container.innerHTML = "";
-		data.forEach(item => container.appendChild(createCard(item)));
+		fetch("http://10.0.5.33:8080/demands", {
+			method: "GET",
+			headers: {
+				"Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImV4cCI6MTc3OTEyMDAyOX0.CpE7xtFq8Jk0BjztaWdR0earJSKyZSrgEvTt5bWRso8"
+			}
+		}).then(response => response.json())
+		  .then(data => {
+			console.log("Relevant data:", data);
+				data.forEach(item => {
+					fetch("http://10.0.5.33:8080/images/"+item.images[0].filename, {
+						method: "GET",
+						headers: {
+							"Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImV4cCI6MTc3OTEyMDAyOX0.CpE7xtFq8Jk0BjztaWdR0earJSKyZSrgEvTt5bWRso8"
+						}
+					}).then(response => response.blob())
+					.then(blob => {
+						item.img = URL.createObjectURL(blob);
+						container.appendChild(createCard(item));
+					})
+				});
+		})
 	}
 
 	VIEW.init = init;

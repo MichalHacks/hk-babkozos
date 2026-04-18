@@ -90,6 +90,10 @@
 	background: transparent;
 }
 
+#view-relevant .card-img {
+	max-width: 400px;
+}
+
 #view-relevant .action-btn {
 	flex: 1;
 	padding: 10px 0;
