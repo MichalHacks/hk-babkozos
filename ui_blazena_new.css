@@ -1,0 +1,63 @@
+/* ===== BLAZENA TAB ===== */
+
+#view-blazena {
+	padding: 12px;
+}
+
+/* GRID */
+#view-blazena .blazena-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 12px;
+}
+
+/* tiles */
+#view-blazena .blazena-item {
+	background: var(--card);
+	border: 1px solid var(--border);
+	border-radius: 18px;
+
+	aspect-ratio: 1 / 1;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+
+	font-weight: bold;
+
+	cursor: pointer;
+	user-select: none;
+
+	transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+#view-blazena .blazena-item .big {
+	font-size: 70px;
+}
+
+/* hover / tap feel */
+#view-blazena .blazena-item:active {
+	transform: scale(0.97);
+}
+
+/* soft elevation on hover (desktop) */
+@media (hover: hover) {
+	#view-blazena .blazena-item:hover {
+		box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+	}
+}
+
+/* larger screens = 3–4 columns */
+@media (min-width: 600px) {
+	#view-blazena .blazena-grid {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@media (min-width: 900px) {
+	#view-blazena .blazena-grid {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>TEST APP</title>
+		<link rel="stylesheet" href="./main.css">
+		<link rel="stylesheet" href="./ui_lubo_fyp.css">
+		<link rel="stylesheet" href="./ui_lubo_profile.css">
+		<link rel="stylesheet" href="./ui_blazena_new.css">
+	</head>
+	<body>
+		<div class="app">
+			<div class="top-bar">
+				<div class="logo">test app</div>
+			</div>
+			<div class="main">
+				<!-- NEW INZERAT -->
+				<div id="view-blazena" class="view active">
+					<div class="blazena-grid">
+						<div class="blazena-item">
+							<span class="big">🪏</span>
+							<span>Zahradne prace</span>
+						</div>
+						<div class="blazena-item">
+							<span class="big">🛒</span>
+							<span>Nakupy</span>
+						</div>
+						<div class="blazena-item">
+							<span class="big">📦</span>
+							<span>Prenasanie</span>
+						</div>
+						<div class="blazena-item">
+							<span class="big">⚙️</span>
+							<span>Nastavenie mobilu</span>
+						</div>
+						<div class="blazena-item">
+							<span class="big">🦽</span>
+							<span>Prechadzka</span>
+						</div>
+					</div>
+				</div>
+				<!-- RELEVANT -->
+				<div id="view-relevant" class="view">
+					<style>
+						.action-btn.edit {
+							color: var(--color-info) !important;
+						}
+					
+						.action-btn.delete {
+							color: var(--color-danger) !important;
+						}
+					
+						.action-btn.edit:hover {
+							background: var(--color-info) !important;
+							color: #fff !important;
+						}
+					
+						.action-btn.delete:hover {
+							background: var(--color-danger) !important;
+							color: #fff !important;
+						}
+					</style>
+					<div id="relevant-list"></div>
+				</div>
+				<!-- PROFILE -->
+				<div id="view-profile" class="view">
+					<p style="padding:20px">Profile (dummy)</p>
+				</div>
+			</div>
+			<div class="bottom-bar">
+				<div class="tab active" data-view="blazena">New Demand</div>
+				<div class="tab" data-view="relevant">My Demands</div>
+				<div class="tab" data-view="profile">Profile</div>
+			</div>
+		</div>
+		<script>
+
+			const data = [{
+				title: "Frontend UI Help",
+				username: "john_doe",
+				desc: "Looking for help with responsive layout.",
+				tags: ["tech", "ui"],
+				location: "Košice",
+				contact: "john@mail.com",
+				extra: "Remote",
+				img: "https://picsum.photos/400/200",
+				user: "https://i.pravatar.cc/40?img=1"
+			}, {
+				title: "Design Feedback",
+				username: "anna_design",
+				desc: "Need critique on mobile app.",
+				tags: ["design"],
+				location: "Prague",
+				contact: "anna@mail.com",
+				extra: "Freelance",
+				img: "https://picsum.photos/400/201",
+				user: "https://i.pravatar.cc/40?img=2"
+			}];
+
+
+			/* CARD GENERATOR */
+			function createCard(item) {
+				const el = document.createElement("div");
+				el.className = "card";
+				el.innerHTML = `
+					<img class="main-img" src="${item.img}">
+					<div class="card-content">
+						<div class="user-row">
+							<img class="avatar" src="${item.user}">
+							<div class="username">${item.username}</div>
+						</div>
+						<div class="card-body">
+							<div class="left">
+								<div class="title">${item.title}</div>
+							</div>
+						</div>
+					</div>
+					<div class="card-actions">
+						<button class="action-btn edit">Edit</button>
+						<button class="action-btn delete">Delete</button>
+					</div>
+  				`;
+				return el;
+			}
+
+
+			/* RENDERERS */
+			function renderList(containerId, items) {
+				const container = document.getElementById(containerId);
+				container.innerHTML = "";
+				items.forEach(item => container.appendChild(createCard(item)));
+			}
+
+
+			/* INIT */
+			renderList("relevant-list", data);
+			/* TAB SWITCHING */
+			document.querySelectorAll(".tab").forEach(tab => {
+				tab.onclick = () => {
+					document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+					document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
+					tab.classList.add("active");
+					document.getElementById("view-" + tab.dataset.view).classList.add("active");
+				};
+			});
+		</script>
+	</body>
+</html>
