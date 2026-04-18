@@ -4,7 +4,62 @@
 	padding: 12px;
 }
 
-/* GRID */
+/* ===== MODE SELECTION ===== */
+
+#view-blazena .blazena-mode {
+	margin-top: 10px;
+}
+
+#view-blazena .blazena-mode-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 12px;
+}
+
+/* mode tiles */
+#view-blazena .blazena-mode-item {
+	background: var(--card);
+	border: 1px solid var(--border);
+	border-radius: 18px;
+
+	height: 160px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+
+	font-weight: 700;
+	cursor: pointer;
+	user-select: none;
+
+	transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.15s ease;
+}
+
+#view-blazena .blazena-mode-item .big {
+	font-size: 42px;
+}
+
+/* interaction */
+#view-blazena .blazena-mode-item:active {
+	transform: scale(0.97);
+}
+
+@media (hover: hover) {
+	#view-blazena .blazena-mode-item:hover {
+		box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+	}
+}
+
+/* mobile fallback */
+@media (max-width: 480px) {
+	#view-blazena .blazena-mode-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* ========= GRID ========= */
 #view-blazena .blazena-grid {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
