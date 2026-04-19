@@ -25,7 +25,7 @@ function toggleListening() {
 }
 
 (() => {
-	
+
 
 	const VIEW = document.getElementById("view-blazena");
 	const CONTAINER = VIEW.querySelector("#tab-container");
@@ -39,32 +39,55 @@ function toggleListening() {
 			root: {
 				title: "Start",
 				items: {
-					garden: {
-						label: "Záhrada",
+					home: {
+						label: "Domácnosť",
 						icon: "🪏",
 						items: {
-							hedge: { label: "Strihanie živého plota", icon: "✂️" },
-							water: { label: "Polievanie", icon: "💧" },
-							clean: { label: "Čistenie záhrady", icon: "🧹" }
+							a: { label: "Oprava a Montáž", id: 1, icon: "✂️" },
+							b: { label: "Upratovanie", id: 2, icon: "💧" },
+							c: { label: "Sťahovanie", id: 3, icon: "🧹" }
 						}
 					},
-					shopping: {
-						label: "Nákupy",
+					garden: {
+						label: "Záhrada",
 						icon: "🛒",
 						items: {
-							food: { label: "Potraviny", icon: "🥦" },
-							home: { label: "Domáce potreby", icon: "🧴" }
+							d: { label: "Kosenie trávy", id: 4, icon: "🥦" },
+							e: { label: "Strihanie", id: 5, icon: "🥦" },
+							f: { label: "Rúbanie dreva", id: 6, icon: "🥦" },
+							g: { label: "Upratovanie", id: 7, icon: "🥦" }
 						}
 					},
-					moving: {
-						label: "Prenášanie",
+					technology: {
+						label: "Technológie",
 						icon: "📦",
 						items: {
-							boxes: { label: "Krabice", icon: "📦" },
-							furniture: { label: "Nábytok", icon: "🪑" }
-						}
-					}
-				}
+							h: { label: "TV", id: 8, icon: "📦" },
+							i: { label: "Telefón", id: 9, icon: "📦" },
+							j: { label: "Počítač", id: 10, icon: "📦" },
+							k: { label: "Internet", id: 11, icon: "🪑" }
+            }
+          },
+          errands: {
+            label: "Vybavovačky",
+            icon: "🛒",
+            items: {
+              l: { label: "Transport", id: 12, icon: "📦" },
+              m: { label: "Nákup", id: 13, icon: "📦" },
+              n: { label: "Pošta", id: 14, icon: "📦" },
+              o: { label: "Administratíva", id: 15, icon: "📦" }
+            }
+          },
+          others: {
+            label: "Iné",
+            icon: "🛒",
+            items: {
+              p: { label: "Venčenie", id: 16, icon: "📦" },
+              q: { label: "Rozhovor a Návšteva", id: 17, icon: "📦" },
+              r: { label: "Sprevádzanie na prechádzke", id: 18, icon: "📦" }
+            }
+          }
+        }
 			}
 		};
 
@@ -142,7 +165,7 @@ function toggleListening() {
 			});
 		}
 
-	
+
 		/* Initialize the manual */
 		render();
 	}
@@ -257,7 +280,7 @@ function toggleListening() {
 
 			if (!uploadedPhotos.length)
 				photoContainer.innerText = CHOSEN_PHOTOS;
-			
+
 			// Render each photo with a remove button
 			uploadedPhotos.forEach((photoURL, index) => {
 				const photoDiv = document.createElement("div");
@@ -269,7 +292,7 @@ function toggleListening() {
 						<span class="material-symbols-outlined">close</span>
 					</button>
 				`;
-				
+
 				const removeBtn = photoDiv.querySelector(".remove-photo-button")
 				removeBtn.onclick = () => removePhoto(removeBtn.dataset.index);
 
