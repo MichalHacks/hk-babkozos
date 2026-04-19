@@ -41,53 +41,53 @@ function toggleListening() {
 				items: {
 					home: {
 						label: "Domácnosť",
-						icon: "🪏",
+						icon: `<span class="material-symbols-outlined">home</span>`,
 						items: {
-							a: { label: "Oprava a Montáž", id: 1, icon: "✂️" },
-							b: { label: "Upratovanie", id: 2, icon: "💧" },
-							c: { label: "Sťahovanie", id: 3, icon: "🧹" }
+							a: { label: "Oprava a Montáž", id: 1, icon: `<span class="material-symbols-outlined">handyman</span>` },
+							b: { label: "Upratovanie", id: 2, icon: `<span class="material-symbols-outlined">cleaning_services</span>` },
+							c: { label: "Sťahovanie", id: 3, icon: `<span class="material-symbols-outlined">local_shipping</span>` }
 						}
 					},
 					garden: {
 						label: "Záhrada",
-						icon: "🛒",
+						icon: `<span class="material-symbols-outlined">yard</span>`,
 						items: {
-							d: { label: "Kosenie trávy", id: 4, icon: "🥦" },
-							e: { label: "Strihanie", id: 5, icon: "🥦" },
-							f: { label: "Rúbanie dreva", id: 6, icon: "🥦" },
-							g: { label: "Upratovanie", id: 7, icon: "🥦" }
+							d: { label: "Kosenie trávy", id: 4, icon: `<span class="material-symbols-outlined">grass</span>` },
+							e: { label: "Strihanie", id: 5, icon: `<span class="material-symbols-outlined">content_cut</span>` },
+							f: { label: "Rúbanie dreva", id: 6, icon: `<span class="material-symbols-outlined">forest</span>` },
+							g: { label: "Upratovanie", id: 7, icon: `<span class="material-symbols-outlined">delete_sweep</span>` }
 						}
 					},
 					technology: {
 						label: "Technológie",
-						icon: "📦",
+						icon: `<span class="material-symbols-outlined">devices</span>`,
 						items: {
-							h: { label: "TV", id: 8, icon: "📦" },
-							i: { label: "Telefón", id: 9, icon: "📦" },
-							j: { label: "Počítač", id: 10, icon: "📦" },
-							k: { label: "Internet", id: 11, icon: "🪑" }
-            }
-          },
-          errands: {
-            label: "Vybavovačky",
-            icon: "🛒",
-            items: {
-              l: { label: "Transport", id: 12, icon: "📦" },
-              m: { label: "Nákup", id: 13, icon: "📦" },
-              n: { label: "Pošta", id: 14, icon: "📦" },
-              o: { label: "Administratíva", id: 15, icon: "📦" }
-            }
-          },
-          others: {
-            label: "Iné",
-            icon: "🛒",
-            items: {
-              p: { label: "Venčenie", id: 16, icon: "📦" },
-              q: { label: "Rozhovor a Návšteva", id: 17, icon: "📦" },
-              r: { label: "Sprevádzanie na prechádzke", id: 18, icon: "📦" }
-            }
-          }
-        }
+							h: { label: "TV", id: 8, icon: `<span class="material-symbols-outlined">tv</span>` },
+							i: { label: "Telefón", id: 9, icon: `<span class="material-symbols-outlined">phone_android</span>` },
+							j: { label: "Počítač", id: 10, icon: `<span class="material-symbols-outlined">computer</span>` },
+							k: { label: "Internet", id: 11, icon: `<span class="material-symbols-outlined">wifi</span>` }
+						}
+					},
+					errands: {
+						label: "Vybavovačky",
+						icon: `<span class="material-symbols-outlined">checklist</span>`,
+						items: {
+							l: { label: "Transport", id: 12, icon: `<span class="material-symbols-outlined">directions_car</span>` },
+							m: { label: "Nákup", id: 13, icon: `<span class="material-symbols-outlined">shopping_cart</span>` },
+							n: { label: "Pošta", id: 14, icon: `<span class="material-symbols-outlined">local_post_office</span>` },
+							o: { label: "Administratíva", id: 15, icon: `<span class="material-symbols-outlined">description</span>` }
+						}
+					},
+					others: {
+						label: "Iné",
+						icon: `<span class="material-symbols-outlined">category</span>`,
+						items: {
+							p: { label: "Venčenie", id: 16, icon: `<span class="material-symbols-outlined">pets</span>` },
+							q: { label: "Rozhovor a Návšteva", id: 17, icon: `<span class="material-symbols-outlined">people</span>` },
+							r: { label: "Sprevádzanie na prechádzke", id: 18, icon: `<span class="material-symbols-outlined">directions_walk</span>` }
+						}
+					}
+				}
 			}
 		};
 
@@ -141,7 +141,7 @@ function toggleListening() {
 
 			/* Render "Back" button */
 			if (path.length > 1) {
-				addItem({ icon: "⬅", label: "Back" }, () => { path.pop(); render() });
+				addItem({ icon: `<span class="material-symbols-outlined">arrow_back</span>`, label: "Back" }, () => { path.pop(); render() });
 			}
 
 			/* Clear tabs */
@@ -196,12 +196,12 @@ function toggleListening() {
 			<div class="blazena-mode" id="blazena-mode">
 				<div class="blazena-mode-grid">
 					<div class="blazena-mode-item" data-mode="manual">
-						<span class="big">✍️</span>
+						<span class="big material-symbols-outlined" style="font-size:42px">edit_note</span>
 						<span class="label">Manual</span>
 					</div>
 
 					<div class="blazena-mode-item" data-mode="auto">
-						<span class="big">⚡</span>
+						<span class="big material-symbols-outlined" style="font-size:42px">bolt</span>
 						<span class="label">Automatic</span>
 					</div>
 				</div>
@@ -314,15 +314,15 @@ function toggleListening() {
 			<div class="form-container">
 				<div class="blazena-grid">
 					<div class="blazena-item" data-price="none">
-						<span class="big">🚫</span>
+						<span class="big material-symbols-outlined" style="font-size:70px">block</span>
 						<span>Ziadna odmena</span>
 					</div>
 					<div class="blazena-item" data-price="agreement">
-						<span class="big">📦</span>
+						<span class="big material-symbols-outlined" style="font-size:70px">handshake</span>
 						<span>Vymenny obcod (v texte)</span>
 					</div>
 					<div class="blazena-item" data-price="monetary">
-						<span class="big">💰</span>
+						<span class="big material-symbols-outlined" style="font-size:70px">euro</span>
 						<span>Monetary</span>
 					</div>
 				</div>
