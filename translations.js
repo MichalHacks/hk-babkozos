@@ -140,7 +140,7 @@ const TRANS = {
     "cat.errands":             "Errands",
     "cat.others":              "Other",
 
-    // Categories — home
+    // Categories — homee
     "cat.home.repair":         "Repair & Assembly",
     "cat.home.cleaning":       "Cleaning",
     "cat.home.moving":         "Moving",
