@@ -288,20 +288,18 @@ function toggleListening() {
 	function displayManualPrice(data) {
 		CONTAINER.innerHTML = `
 			<h1>Typ odmeny</h1>
-			<div class="form-container">
-				<div class="blazena-grid">
-					<div class="blazena-item" data-price="none">
-						<span class="big">🚫</span>
-						<span>Ziadna odmena</span>
-					</div>
-					<div class="blazena-item" data-price="agreement">
-						<span class="big">📦</span>
-						<span>Vymenny obcod (v texte)</span>
-					</div>
-					<div class="blazena-item" data-price="monetary">
-						<span class="big">💰</span>
-						<span>Monetary</span>
-					</div>
+			<div class="blazena-grid">
+				<div class="blazena-item" data-price="none">
+					<span class="big">🚫</span>
+					<span>Ziadna odmena</span>
+				</div>
+				<div class="blazena-item" data-price="agreement">
+					<span class="big">📦</span>
+					<span>Vymenny obcod (v texte)</span>
+				</div>
+				<div class="blazena-item" data-price="monetary">
+					<span class="big">💰</span>
+					<span>Monetary</span>
 				</div>
 			</div>
 		`;
