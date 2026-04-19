@@ -73,8 +73,8 @@
 				</div>
 			</div>
 			<div class="card-actions">
-				<button class="action-btn edit"><span class="material-symbols-outlined">edit_square</span> Edit</button>
-				<button class="action-btn delete"><span class="material-symbols-outlined">close</span> Delete</button>
+				<button class="action-btn edit"><span class="material-symbols-outlined">edit_square</span> ${t('card.edit')}</button>
+				<button class="action-btn delete"><span class="material-symbols-outlined">close</span> ${t('card.delete')}</button>
 			</div>
 		`);
 		return el;

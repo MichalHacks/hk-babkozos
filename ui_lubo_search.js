@@ -40,7 +40,7 @@
 				</div>
 			</div>
 			<div class="card-actions">
-				<button class="action-btn take"><span class="material-symbols-outlined">check</span> Take</button>
+				<button class="action-btn take"><span class="material-symbols-outlined">check</span> ${t('card.take')}</button>
 			</div>
 		`);
 		return el;

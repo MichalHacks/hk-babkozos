@@ -2,7 +2,7 @@ let recognition, listening = false, output = '';
 const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
 
 function toggleListening() {
-	if (!SR) { alert('Use Chrome'); return; }
+	if (!SR) { alert(t('error.chrome')); return; }
 	if (!listening) {
 		recognition = new SR();
 		recognition.continuous = true;
@@ -32,7 +32,7 @@ function toggleListening() {
 
 	/* ===== DISPLAY MANUAL FUNCTION ===== */
 	function displayManualCategories() {
-		CONTAINER.innerHTML = "<h1>Category select</h1>";
+		CONTAINER.innerHTML = `<h1>${t('category.title')}</h1>`;
 
 		/* ===== HIERARCHICAL DATA TREE ===== */
 		const tree = {
@@ -40,51 +40,51 @@ function toggleListening() {
 				title: "Start",
 				items: {
 					home: {
-						label: "Domácnosť",
+						label: t("cat.home"),
 						icon: `<span class="material-symbols-outlined">home</span>`,
 						items: {
-							a: { label: "Oprava a Montáž", id: 1, icon: `<span class="material-symbols-outlined">handyman</span>` },
-							b: { label: "Upratovanie", id: 2, icon: `<span class="material-symbols-outlined">cleaning_services</span>` },
-							c: { label: "Sťahovanie", id: 3, icon: `<span class="material-symbols-outlined">local_shipping</span>` }
+							a: { label: t("cat.home.repair"), id: 1, icon: `<span class="material-symbols-outlined">handyman</span>` },
+							b: { label: t("cat.home.cleaning"), id: 2, icon: `<span class="material-symbols-outlined">cleaning_services</span>` },
+							c: { label: t("cat.home.moving"), id: 3, icon: `<span class="material-symbols-outlined">local_shipping</span>` }
 						}
 					},
 					garden: {
-						label: "Záhrada",
+						label: t("cat.garden"),
 						icon: `<span class="material-symbols-outlined">yard</span>`,
 						items: {
-							d: { label: "Kosenie trávy", id: 4, icon: `<span class="material-symbols-outlined">grass</span>` },
-							e: { label: "Strihanie", id: 5, icon: `<span class="material-symbols-outlined">content_cut</span>` },
-							f: { label: "Rúbanie dreva", id: 6, icon: `<span class="material-symbols-outlined">forest</span>` },
-							g: { label: "Upratovanie", id: 7, icon: `<span class="material-symbols-outlined">delete_sweep</span>` }
+							d: { label: t("cat.garden.mowing"), id: 4, icon: `<span class="material-symbols-outlined">grass</span>` },
+							e: { label: t("cat.garden.trimming"), id: 5, icon: `<span class="material-symbols-outlined">content_cut</span>` },
+							f: { label: t("cat.garden.chopping"), id: 6, icon: `<span class="material-symbols-outlined">forest</span>` },
+							g: { label: t("cat.garden.cleaning"), id: 7, icon: `<span class="material-symbols-outlined">delete_sweep</span>` }
 						}
 					},
 					technology: {
-						label: "Technológie",
+						label: t("cat.technology"),
 						icon: `<span class="material-symbols-outlined">devices</span>`,
 						items: {
-							h: { label: "TV", id: 8, icon: `<span class="material-symbols-outlined">tv</span>` },
-							i: { label: "Telefón", id: 9, icon: `<span class="material-symbols-outlined">phone_android</span>` },
-							j: { label: "Počítač", id: 10, icon: `<span class="material-symbols-outlined">computer</span>` },
-							k: { label: "Internet", id: 11, icon: `<span class="material-symbols-outlined">wifi</span>` }
+							h: { label: t("cat.tech.tv"), id: 8, icon: `<span class="material-symbols-outlined">tv</span>` },
+							i: { label: t("cat.tech.phone"), id: 9, icon: `<span class="material-symbols-outlined">phone_android</span>` },
+							j: { label: t("cat.tech.computer"), id: 10, icon: `<span class="material-symbols-outlined">computer</span>` },
+							k: { label: t("cat.tech.internet"), id: 11, icon: `<span class="material-symbols-outlined">wifi</span>` }
 						}
 					},
 					errands: {
-						label: "Vybavovačky",
+						label: t("cat.errands"),
 						icon: `<span class="material-symbols-outlined">checklist</span>`,
 						items: {
-							l: { label: "Transport", id: 12, icon: `<span class="material-symbols-outlined">directions_car</span>` },
-							m: { label: "Nákup", id: 13, icon: `<span class="material-symbols-outlined">shopping_cart</span>` },
-							n: { label: "Pošta", id: 14, icon: `<span class="material-symbols-outlined">local_post_office</span>` },
-							o: { label: "Administratíva", id: 15, icon: `<span class="material-symbols-outlined">description</span>` }
+							l: { label: t("cat.errands.transport"), id: 12, icon: `<span class="material-symbols-outlined">directions_car</span>` },
+							m: { label: t("cat.errands.shopping"), id: 13, icon: `<span class="material-symbols-outlined">shopping_cart</span>` },
+							n: { label: t("cat.errands.post"), id: 14, icon: `<span class="material-symbols-outlined">local_post_office</span>` },
+							o: { label: t("cat.errands.admin"), id: 15, icon: `<span class="material-symbols-outlined">description</span>` }
 						}
 					},
 					others: {
-						label: "Iné",
+						label: t("cat.others"),
 						icon: `<span class="material-symbols-outlined">category</span>`,
 						items: {
-							p: { label: "Venčenie", id: 16, icon: `<span class="material-symbols-outlined">pets</span>` },
-							q: { label: "Rozhovor a Návšteva", id: 17, icon: `<span class="material-symbols-outlined">people</span>` },
-							r: { label: "Sprevádzanie na prechádzke", id: 18, icon: `<span class="material-symbols-outlined">directions_walk</span>` }
+							p: { label: t("cat.others.walking"), id: 16, icon: `<span class="material-symbols-outlined">pets</span>` },
+							q: { label: t("cat.others.visit"), id: 17, icon: `<span class="material-symbols-outlined">people</span>` },
+							r: { label: t("cat.others.accompany"), id: 18, icon: `<span class="material-symbols-outlined">directions_walk</span>` }
 						}
 					}
 				}
@@ -141,7 +141,7 @@ function toggleListening() {
 
 			/* Render "Back" button */
 			if (path.length > 1) {
-				addItem({ icon: `<span class="material-symbols-outlined">arrow_back</span>`, label: "Back" }, () => { path.pop(); render() });
+				addItem({ icon: `<span class="material-symbols-outlined">arrow_back</span>`, label: t('category.back') }, () => { path.pop(); render() });
 			}
 
 			/* Clear tabs */
@@ -175,10 +175,10 @@ function toggleListening() {
 			<div class="blazena-auto">
 				<div class="instructions">
 				<ul>
-					<li>Press the microphone button</li>
-					<li>Wait for the beep or light</li>
-					<li>Say what you need help with</em></li>
-					<li>Press the button again to send</li>
+					<li>${t('auto.step1')}</li>
+					<li>${t('auto.step2')}</li>
+					<li>${t('auto.step3')}</li>
+					<li>${t('auto.step4')}</li>
 				</ul>
 				</div>
 				<button class="blazena-auto-btn" onclick="toggleListening()">
@@ -192,17 +192,17 @@ function toggleListening() {
 
 	function displayAutoManualSelect() {
 		CONTAINER.innerHTML = `
-			<h1>New demand</h1>
+			<h1>${t('mode.title')}</h1>
 			<div class="blazena-mode" id="blazena-mode">
 				<div class="blazena-mode-grid">
 					<div class="blazena-mode-item" data-mode="manual">
 						<span class="big material-symbols-outlined" style="font-size:42px">edit_note</span>
-						<span class="label">Manual</span>
+						<span class="label">${t('mode.manual')}</span>
 					</div>
 
 					<div class="blazena-mode-item" data-mode="auto">
 						<span class="big material-symbols-outlined" style="font-size:42px">bolt</span>
-						<span class="label">Automatic</span>
+						<span class="label">${t('mode.automatic')}</span>
 					</div>
 				</div>
 			</div>
@@ -218,11 +218,11 @@ function toggleListening() {
 
 	function displayManualDescription(data) {
 		CONTAINER.innerHTML = `
-			<h1>Description</h1>
+			<h1>${t('desc.title')}</h1>
 			<div class="form-container">
-				<textarea class="form-textarea" id="description" placeholder="Write your description here..."></textarea>
+				<textarea class="form-textarea" id="description" placeholder="${t('desc.placeholder')}"></textarea>
 				<button class="form-next-button" id="next-button">
-					Next <span class="material-symbols-outlined">chevron_right</span>
+					${t('desc.next')} <span class="material-symbols-outlined">chevron_right</span>
 				</button>
 			</div>
 		`;
@@ -231,19 +231,19 @@ function toggleListening() {
 	}
 
 	function displayManualPhotos(data) {
-		CHOSEN_PHOTOS = "Chosen photos will appear here..."
+		const CHOSEN_PHOTOS = t('photos.placeholder');
 
 		CONTAINER.innerHTML = `
-			<h1>Photos</h1>
+			<h1>${t('photos.title')}</h1>
 			<div class="form-container">
 				<label for="photo-input" class="form-file-input-container">
 					<span class="material-symbols-outlined">camera_alt</span>
-					<span>Choose a photo</span>
+					<span>${t('photos.choose')}</span>
 				</label>
 				<input type="file" class="form-file-input" id="photo-input" accept="image/*" multiple />
 				<div id="uploaded-photos" class="uploaded-photos-container">${CHOSEN_PHOTOS}</div>
 				<button class="form-next-button" id="next-button">
-					Next <span class="material-symbols-outlined">chevron_right</span>
+					${t('photos.next')} <span class="material-symbols-outlined">chevron_right</span>
 				</button>
 			</div>
 		`;
@@ -313,20 +313,20 @@ function toggleListening() {
 
 	function displayManualPrice(data) {
 		CONTAINER.innerHTML = `
-			<h1>Typ odmeny</h1>
+			<h1>${t('price.title')}</h1>
 			<div class="form-container">
 				<div class="blazena-grid">
 					<div class="blazena-item" data-price="none">
 						<span class="big material-symbols-outlined" style="font-size:70px">block</span>
-						<span>Ziadna odmena</span>
+						<span>${t('price.none')}</span>
 					</div>
 					<div class="blazena-item" data-price="agreement">
 						<span class="big material-symbols-outlined" style="font-size:70px">handshake</span>
-						<span>Vymenny obcod (v texte)</span>
+						<span>${t('price.agreement')}</span>
 					</div>
 					<div class="blazena-item" data-price="monetary">
 						<span class="big material-symbols-outlined" style="font-size:70px">euro</span>
-						<span>Monetary</span>
+						<span>${t('price.monetary')}</span>
 					</div>
 				</div>
 			</div>
@@ -342,12 +342,12 @@ function toggleListening() {
 
 	function displayManualPriceNumber(data) {
 		CONTAINER.innerHTML = `
-			<h1>Price</h1>
+			<h1>${t('pricenum.title')}</h1>
 			<div class="form-container">
-				<input type="number" class="form-price-input" id="price-input" placeholder="Enter price" />
+				<input type="number" class="form-price-input" id="price-input" placeholder="${t('pricenum.placeholder')}" />
 				<span style="color:var(--color-danger)" id="err-msg"></span>
 				<button class="form-next-button" id="next-button">
-					Next <span class="material-symbols-outlined">chevron_right</span>
+					${t('pricenum.next')} <span class="material-symbols-outlined">chevron_right</span>
 				</button>
 			</div>
 		`;
@@ -356,7 +356,7 @@ function toggleListening() {
 		const msg = CONTAINER.querySelector("#err-msg");
 		input.oninput= () => {
 			if (String(input.value).match(/^\d+$/) === null)
-				msg.innerHTML = `<span class="material-symbols-outlined">warning</span> Must be a number.`;
+				msg.innerHTML = `<span class="material-symbols-outlined">warning</span> ${t('pricenum.error')}`;
 			else
 				msg.innerHTML = ``;
 		}
@@ -367,48 +367,48 @@ function toggleListening() {
 		};sendData(data)
 	}
 
-	
+
 
 	function displayManualFinishForm(data) {
 		CONTAINER.innerHTML = `
-			<h1>Summary</h1>
+			<h1>${t('summary.title')}</h1>
 			<div class="form-container">
 				<div class="summary-tab">
 					<div class="summary-item">
-						<strong>Categories:</strong> <span class="summary-value">${data.categories.label}</span>
+						<strong>${t('summary.categories')}</strong> <span class="summary-value">${data.categories.label}</span>
 					</div>
 					<div class="summary-item">
-						<strong>Description:</strong> <span class="summary-value">${data.description || "No description provided."}</span>
+						<strong>${t('summary.description')}</strong> <span class="summary-value">${data.description || t('summary.noDescription')}</span>
 					</div>
 					<div class="summary-item">
-						<strong>Price:</strong> <span class="summary-value">${data.priceType === "monetary" ? data.price + "€" : 'Non-monetary.'}</span>
+						<strong>${t('summary.price')}</strong> <span class="summary-value">${data.priceType === "monetary" ? data.price + "€" : t('summary.nonMonetary')}</span>
 					</div>
 					<div class="summary-item">
-						<strong>Price Type:</strong> <span class="summary-value">${data.priceType.charAt(0).toUpperCase() + data.priceType.slice(1)}</span>
+						<strong>${t('summary.priceType')}</strong> <span class="summary-value">${data.priceType.charAt(0).toUpperCase() + data.priceType.slice(1)}</span>
 					</div>
 
 					<!-- Photos Section -->
 					<div class="summary-photos-section">
-						<strong>Uploaded Photos:</strong>
+						<strong>${t('summary.photos')}</strong>
 						<div class="summary-photos-grid">
 							${data.photos.length ? data.photos.map(photo => `
 								<div class="summary-photo-item">
 									<img src="${photo}" alt="Uploaded Photo" class="summary-photo-image">
 									<button class="remove-photo-button">❌</button>
 								</div>
-							`).join('') : 'No photos.'}
+							`).join('') : t('summary.noPhotos')}
 						</div>
 					</div>
 				</div>
 				<button class="form-next-button" id="next-button">
-					<span class="material-symbols-outlined">check</span> Finish
+					<span class="material-symbols-outlined">check</span> ${t('summary.finish')}
 				</button>
 			</div>
 		`;
 
-		
 
-		
+
+
 
 		// Add event listener to remove photos
 		CONTAINER.querySelectorAll(".remove-photo-btn").forEach(btn => {

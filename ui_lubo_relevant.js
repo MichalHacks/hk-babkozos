@@ -61,7 +61,7 @@
 				</div>
 			</div>
 			<div class="card-actions">
-				<button class="action-btn take" onclick="handleTake(${item.id})"><span class="material-symbols-outlined">check</span> Take</button>
+				<button class="action-btn take" onclick="handleTake(${item.id})"><span class="material-symbols-outlined">check</span> ${t('card.take')}</button>
 			</div>
 		`);
 		return el;
@@ -92,8 +92,8 @@
 				</div>
 			</div>
 			<div class="card-actions">
-				<button class="action-btn finished" onclick="handleFinished(${item.id})"><span class="material-symbols-outlined">check</span> Finished</button>
-				<button class="action-btn cancel" onclick="handleCancel(${item.id})"><span class="material-symbols-outlined">close</span> Cancel</button>
+				<button class="action-btn finished" onclick="handleFinished(${item.id})"><span class="material-symbols-outlined">check</span> ${t('card.finished')}</button>
+				<button class="action-btn cancel" onclick="handleCancel(${item.id})"><span class="material-symbols-outlined">close</span> ${t('card.cancel')}</button>
 			</div>
 		`);
 		return el;

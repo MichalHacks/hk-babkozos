@@ -69,21 +69,21 @@ const subscribe = () => {
 			
 			<div class="profile-content">
 				<div class="profile-field">
-					<label class="profile-label">Phone Number</label>
+					<label class="profile-label">${t('profile.phone')}</label>
 					<p class="profile-value">${profileData.phone}</p>
 				</div>
 
 				<div class="profile-field">
-					<label class="profile-label">Categories</label>
+					<label class="profile-label">${t('profile.categories')}</label>
 					<p class="profile-value">${parseCategories(profileData.categories)}</p>
 				</div>
-				
+
 				<div class="profile-field">
-					<label class="profile-label">Bio</label>
+					<label class="profile-label">${t('profile.bio')}</label>
 					<p class="profile-value">${profileData.bio}</p>
 				</div>
 			</div>
-			${Notification.permission === "granted" ? '' : '<button onclick="subscribe()" class="subscribe-btn">Subscribe to notifications</button>'}
+			${Notification.permission === "granted" ? '' : `<button onclick="subscribe()" class="subscribe-btn">${t('profile.subscribe')}</button>`}
 
 
 			<style scoped>

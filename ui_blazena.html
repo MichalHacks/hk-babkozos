@@ -13,6 +13,7 @@
 		<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
 
 		<link rel="stylesheet" href="./material_symbols.css" />
+		<script src="./translations.js"></script>
 		<script src="./card_carousel.js"></script>
 	</head>
 	<body>
@@ -37,12 +38,14 @@
 				</div>
 			</div>
 			<div class="bottom-bar glass">
-				<div class="tab active" data-view="blazena"><span class="material-symbols-outlined">waving_hand</span> New Demand</div>
-				<div class="tab" data-view="relevant"><span class="material-symbols-outlined">notifications_active</span> My Demands</div>
-				<div class="tab" data-view="profile"><span class="material-symbols-outlined">account_circle</span> Profile</div>
+				<div class="tab active" data-view="blazena"><span class="material-symbols-outlined">waving_hand</span> <span data-i18n="nav.newDemand">New Demand</span></div>
+				<div class="tab" data-view="relevant"><span class="material-symbols-outlined">notifications_active</span> <span data-i18n="nav.myDemands">My Demands</span></div>
+				<div class="tab" data-view="profile"><span class="material-symbols-outlined">account_circle</span> <span data-i18n="nav.profile">Profile</span></div>
 			</div>
 		</div>
 		<script>
+			document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.dataset.i18n); });
+
 			// Register the service worker
 			if ('serviceWorker' in navigator) {
 				navigator.serviceWorker.register('/service-worker.js');

@@ -37,7 +37,7 @@ function getInitials(name) {
 			
 			<div class="profile-content">
 				<div class="profile-field">
-					<label class="profile-label">Phone Number</label>
+					<label class="profile-label">${t('profile.phone')}</label>
 					<p class="profile-value">${profileData.phone}</p>
 				</div>
 			</div>

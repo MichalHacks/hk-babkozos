@@ -12,6 +12,7 @@
 		<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
 
 		<link rel="stylesheet" href="./material_symbols.css" />
+		<script src="./translations.js"></script>
 		<script src="./card_carousel.js"></script>
 	</head>
 	<body>
@@ -29,16 +30,16 @@
 				<div id="view-search" class="view">
 					<div class="search-bar">
 						<div class="search-inner">
-							<input type="text" id="searchInput" placeholder="Search items, tags..." />
+							<input type="text" id="searchInput" data-i18n-placeholder="search.placeholder" placeholder="Search items, tags..." />
 						</div>
-					
+
 						<div class="filters">
-							<div class="filter active" data-cat="">Všetky</div>
-							<div class="filter" data-cat="GARDEN">Záhrada</div>
-							<div class="filter" data-cat="HOME">Domov</div>
-							<div class="filter" data-cat="TECHNOLOGY">Technológia</div>
-							<div class="filter" data-cat="ERRANDS">Pochôdzky</div>
-							<div class="filter" data-cat="OTHERS">Ostatné</div>
+							<div class="filter active" data-cat="" data-i18n="filter.all">Všetky</div>
+							<div class="filter" data-cat="GARDEN" data-i18n="filter.garden">Záhrada</div>
+							<div class="filter" data-cat="HOME" data-i18n="filter.home">Domov</div>
+							<div class="filter" data-cat="TECHNOLOGY" data-i18n="filter.technology">Technológia</div>
+							<div class="filter" data-cat="ERRANDS" data-i18n="filter.errands">Pochôdzky</div>
+							<div class="filter" data-cat="OTHERS" data-i18n="filter.others">Ostatné</div>
 						</div>
 					</div>
 					<div id="search-list"></div>
@@ -50,12 +51,15 @@
 				</div>
 			</div>
 			<div class="bottom-bar glass">
-				<div class="tab active" data-view="relevant"><span class="material-symbols-outlined">public</span> For You</div>
-				<div class="tab" data-view="search"><span class="material-symbols-outlined">search</span> Search</div>
-				<div class="tab" data-view="profile"><span class="material-symbols-outlined">account_circle</span> Profile</div>
+				<div class="tab active" data-view="relevant"><span class="material-symbols-outlined">public</span> <span data-i18n="nav.forYou">For You</span></div>
+				<div class="tab" data-view="search"><span class="material-symbols-outlined">search</span> <span data-i18n="nav.search">Search</span></div>
+				<div class="tab" data-view="profile"><span class="material-symbols-outlined">account_circle</span> <span data-i18n="nav.profile">Profile</span></div>
 			</div>
 		</div>
 		<script>
+			document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.dataset.i18n); });
+			document.querySelectorAll('[data-i18n-placeholder]').forEach(el => { el.placeholder = t(el.dataset.i18nPlaceholder); });
+
 			const TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImV4cCI6MTc3OTEyMDAyOX0.CpE7xtFq8Jk0BjztaWdR0earJSKyZSrgEvTt5bWRso8";
 			function handleFinished(demandId) {
 				fetch("http://10.0.5.33:8080/demands/" + demandId +"/resolve", {
