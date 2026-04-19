@@ -1,7 +1,7 @@
 /* ===== SEARCH UI ===== */
 #view-search .search-bar {
-	margin-bottom: 12px;
-	padding: 12px;
+	margin-bottom: var(--pad);
+	padding: var(--pad);
 	background: var(--card);
 	border: 1px solid var(--border);
 	border-radius: 16px;
@@ -11,7 +11,7 @@
 
 #view-search .search-inner {
 	padding: 4px;
-	border-radius: 12px;
+	border-radius: var(--pad);
 	border: 1px solid var(--border);
 }
 
@@ -50,7 +50,7 @@
 	background: var(--card);
 	border: 1px solid var(--border);
 	border-radius: 16px;
-	margin-bottom: 12px;
+	margin-bottom: var(--pad);
 	overflow: hidden;
 	margin-inline: 10px;
 	display: inline-block;
@@ -63,7 +63,7 @@
 }
 
 #view-search .card-content {
-	padding: 12px;
+	padding: var(--pad);
 }
 
 #view-search .user-row {
@@ -86,7 +86,7 @@
 
 #view-search .card-body {
 	display: flex;
-	gap: 12px;
+	gap: var(--pad);
 }
 
 #view-search .left {

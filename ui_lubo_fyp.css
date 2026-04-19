@@ -3,8 +3,8 @@
 #view-relevant .card {
 	background: var(--card);
 	border: 1px solid var(--border);
-	border-radius: 16px;
-	margin-bottom: 12px;
+	border-radius: var(--pad);
+	margin-bottom: var(--pad);
 	overflow: hidden;
 	margin-inline: 10px;
 	display: inline-block;
@@ -17,7 +17,7 @@
 }
 
 #view-relevant .card-content {
-	padding: 12px;
+	padding: var(--pad);
 }
 
 #view-relevant .user-row {
@@ -40,7 +40,7 @@
 
 #view-relevant .card-body {
 	display: flex;
-	gap: 12px;
+	gap: var(--pad);
 }
 
 #view-relevant .left {
@@ -50,7 +50,7 @@
 #view-relevant .right {
 	min-width: 90px;
 	text-align: right;
-	font-size: 12px;
+	font-size: var(--pad);
 	color: var(--muted);
 }
 
@@ -76,7 +76,7 @@
 
 #view-relevant .tag {
 	padding: 4px 8px;
-	font-size: 12px;
+	font-size: var(--pad);
 	border-radius: 999px;
 	background: #eee;
 }
@@ -93,7 +93,7 @@
 #view-relevant .action-btn {
 	flex: 1;
 	padding: 10px 0;
-	font-size: 12px;
+	font-size: var(--pad);
 	font-weight: 600;
 
 	background: transparent;

@@ -14,7 +14,6 @@
 
 	--radius: 16px;
 	--pad: 12px;
-	--gap: 12px;
 
 	--blur: blur(15px);
 	--opacity_pc: 50%;
@@ -48,7 +47,10 @@
 * {
 	box-sizing: border-box;
 	margin: 0;
-	font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+	font-family: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-style: normal;
 }
 
 body {

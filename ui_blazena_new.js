@@ -1,10 +1,10 @@
 (() => {
 	const VIEW = document.getElementById("view-blazena");
+	const CONTAINER = VIEW.querySelector("#tab-container");
 
 	/* ===== DISPLAY MANUAL FUNCTION ===== */
-	function displayManual() {
-		const CONTAINER = VIEW.querySelector("#tab-container");
-		CONTAINER.innerHTML = "";
+	function displayManualCategories() {
+		CONTAINER.innerHTML = "<h1>Category select</h1>";
 
 		/* ===== HIERARCHICAL DATA TREE ===== */
 		const tree = {
@@ -82,6 +82,8 @@
 					if (item.items) {
 						path.push(key);
 						render();
+					} else {
+						displayManualDescription({ categories: [...(path.slice(1)), key] });
 					}
 				});
 			});
@@ -117,9 +119,8 @@
 	}
 
 	function displayAutoManualSelect() {
-		const CONTAINER = VIEW.querySelector("#tab-container");
-		
 		CONTAINER.innerHTML = `
+			<h1>New demand</h1>
 			<div class="blazena-mode" id="blazena-mode">
 				<div class="blazena-mode-grid">
 					<div class="blazena-mode-item" data-mode="manual">
@@ -137,10 +138,205 @@
 
 		CONTAINER.querySelectorAll(".blazena-mode-item").forEach(x => {
 			if (x.dataset.mode == "manual")
-				x.onclick = displayManual;
+				x.onclick = displayManualCategories;
 			if (x.dataset.mode == "auto")
 				x.onclick = () => alert("Not implemented");
 		})
+	}
+
+	function displayManualDescription(data) {
+		CONTAINER.innerHTML = `
+			<h1>Description</h1>
+			<div class="form-container">
+				<textarea class="form-textarea" id="description" placeholder="Write your description here..."></textarea>
+				<button class="form-next-button" id="next-button">
+					Next <span class="material-symbols-outlined">chevron_right</span>
+				</button>
+			</div>
+		`;
+
+		CONTAINER.querySelector("#next-button").onclick = () => displayManualPhotos({...data, description: CONTAINER.querySelector("#description").value});
+	}
+
+	function displayManualPhotos(data) {
+		CHOSEN_PHOTOS = "Chosen photos will appear here..."
+
+		CONTAINER.innerHTML = `
+			<h1>Photos</h1>
+			<div class="form-container">
+				<label for="photo-input" class="form-file-input-container">
+					<span class="material-symbols-outlined">camera_alt</span>
+					<span>Choose a photo</span>
+				</label>
+				<input type="file" class="form-file-input" id="photo-input" accept="image/*" multiple />
+				<div id="uploaded-photos" class="uploaded-photos-container">${CHOSEN_PHOTOS}</div>
+				<button class="form-next-button" id="next-button">
+					Next <span class="material-symbols-outlined">chevron_right</span>
+				</button>
+			</div>
+		`;
+
+		const photoInput = CONTAINER.querySelector("#photo-input");
+		photoInput.addEventListener('change', handleFileSelect);
+
+		const uploadedPhotos = [];
+
+		// Handle file selection and display photos
+		function handleFileSelect(event) {
+			const files = event.target.files;
+
+			// Loop through selected files
+			for (let i = 0; i < files.length; i++) {
+				const file = files[i];
+				const reader = new FileReader();
+
+				reader.onload = function (e) {
+					// Add the image to the uploaded photos list
+					const photoURL = e.target.result;
+					uploadedPhotos.push(photoURL);
+					displayUploadedPhotos();
+				}
+
+				reader.readAsDataURL(file);
+			}
+		}
+
+		// Display the uploaded photos below the input area
+		function displayUploadedPhotos() {
+			const photoContainer = document.getElementById("uploaded-photos");
+			photoContainer.innerHTML = ''; // Clear existing photos before rendering new ones
+
+			if (!uploadedPhotos.length)
+				photoContainer.innerText = CHOSEN_PHOTOS;
+			
+			// Render each photo with a remove button
+			uploadedPhotos.forEach((photoURL, index) => {
+				const photoDiv = document.createElement("div");
+				photoDiv.className = "uploaded-photo-item";
+
+				photoDiv.innerHTML = `
+					<img src="${photoURL}" alt="Uploaded Photo" class="uploaded-photo">
+					<button class="remove-photo-button" data-index="${index}">
+						<span class="material-symbols-outlined">close</span>
+					</button>
+				`;
+				
+				const removeBtn = photoDiv.querySelector(".remove-photo-button")
+				removeBtn.onclick = () => removePhoto(removeBtn.dataset.index);
+
+				photoContainer.appendChild(photoDiv);
+			});
+		}
+
+		function removePhoto(index) {
+			uploadedPhotos.splice(index, 1);
+			displayUploadedPhotos(); // Re-render the uploaded photos
+		}
+
+		CONTAINER.querySelector("#next-button").onclick = () => displayManualPrice({ ...data, photos: uploadedPhotos });
+	}
+
+	function displayManualPrice(data) {
+		CONTAINER.innerHTML = `
+			<h1>Typ odmeny</h1>
+			<div class="form-container">
+				<div class="blazena-grid">
+					<div class="blazena-item" data-price="none">
+						<span class="big">🚫</span>
+						<span>Ziadna odmena</span>
+					</div>
+					<div class="blazena-item" data-price="agreement">
+						<span class="big">📦</span>
+						<span>Vymenny obcod (v texte)</span>
+					</div>
+					<div class="blazena-item" data-price="monetary">
+						<span class="big">💰</span>
+						<span>Monetary</span>
+					</div>
+				</div>
+			</div>
+		`;
+
+		CONTAINER.querySelectorAll(".blazena-item").forEach(x => {
+			if (x.dataset.price == "none" || x.dataset.price == "agreement")
+				x.onclick = () => displayManualFinishForm({ ...data, priceType: x.dataset.price, price: 0 });
+			if (x.dataset.price == "monetary")
+				x.onclick = () => displayManualPriceNumber({ ...data, priceType: x.dataset.price });
+		})
+	}
+
+	function displayManualPriceNumber(data) {
+		CONTAINER.innerHTML = `
+			<h1>Price</h1>
+			<div class="form-container">
+				<input type="number" class="form-price-input" id="price-input" placeholder="Enter price" />
+				<span style="color:var(--color-danger)" id="err-msg"></span>
+				<button class="form-next-button" id="next-button">
+					Next <span class="material-symbols-outlined">chevron_right</span>
+				</button>
+			</div>
+		`;
+
+		const input = CONTAINER.querySelector("#price-input");
+		const msg = CONTAINER.querySelector("#err-msg");
+		input.oninput= () => {
+			if (String(input.value).match(/^\d+$/) === null)
+				msg.innerHTML = `<span class="material-symbols-outlined">warning</span> Must be a number.`;
+			else
+				msg.innerHTML = ``;
+		}
+
+		CONTAINER.querySelector("#next-button").onclick = () => {
+			if (String(input.value).match(/^\d+$/) !== null)
+				displayManualFinishForm({ ...data, price: Number(input.value) })
+		};
+	}
+
+	function displayManualFinishForm(data) {
+		CONTAINER.innerHTML = `
+			<h1>Summary</h1>
+			<div class="form-container">
+				<div class="summary-tab">
+					<div class="summary-item">
+						<strong>Categories:</strong> <span class="summary-value">${data.categories.join(', ')}</span>
+					</div>
+					<div class="summary-item">
+						<strong>Description:</strong> <span class="summary-value">${data.description || "No description provided."}</span>
+					</div>
+					<div class="summary-item">
+						<strong>Price:</strong> <span class="summary-value">${data.priceType === "monetary" ? data.price + "€" : 'Non-monetary.'}</span>
+					</div>
+					<div class="summary-item">
+						<strong>Price Type:</strong> <span class="summary-value">${data.priceType.charAt(0).toUpperCase() + data.priceType.slice(1)}</span>
+					</div>
+
+					<!-- Photos Section -->
+					<div class="summary-photos-section">
+						<strong>Uploaded Photos:</strong>
+						<div class="summary-photos-grid">
+							${data.photos.length ? data.photos.map(photo => `
+								<div class="summary-photo-item">
+									<img src="${photo}" alt="Uploaded Photo" class="summary-photo-image">
+									<button class="remove-photo-button">❌</button>
+								</div>
+							`).join('') : 'No photos.'}
+						</div>
+					</div>
+				</div>
+				<button class="form-next-button" id="next-button">
+					<span class="material-symbols-outlined">check</span> Finish
+				</button>
+			</div>
+		`;
+
+		// Add event listener to remove photos
+		CONTAINER.querySelectorAll(".remove-photo-btn").forEach(btn => {
+			btn.addEventListener("click", (e) => {
+				const photoItem = e.target.closest('.photo-item');
+				photoItem.remove();
+				// Optionally, you can also remove the photo from `data.photos` if needed
+			});
+		});
 	}
 
 	VIEW.init = () => displayAutoManualSelect();
