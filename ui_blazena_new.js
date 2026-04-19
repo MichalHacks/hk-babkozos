@@ -31,13 +31,8 @@ function toggleListening() {
 	const CONTAINER = VIEW.querySelector("#tab-container");
 
 	/* ===== DISPLAY MANUAL FUNCTION ===== */
-<<<<<<< HEAD
-	function displayManual() {
-		CONTAINER.innerHTML = "";
-=======
 	function displayManualCategories() {
 		CONTAINER.innerHTML = "<h1>Category select</h1>";
->>>>>>> origin/new-flow
 
 		/* ===== HIERARCHICAL DATA TREE ===== */
 		const tree = {
