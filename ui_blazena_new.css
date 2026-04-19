@@ -4,6 +4,51 @@
 	padding: 12px;
 }
 
+#view-blazena .instructions {
+	text-align: center;
+	font-size: 2em;
+	padding: 32px 24px 24px;
+	background: linear-gradient(135deg, rgba(145, 215, 183, 0.15) 0%, rgba(90, 174, 126, 0.15) 100%);
+	border: 1px solid rgba(90, 174, 126, 0.35);
+	border-bottom: 3px solid rgba(90, 174, 126, 0.6);
+	border-radius: 16px;
+	position: relative;
+	max-width: 580px;
+	box-shadow: 0 4px 24px rgba(90, 174, 126, 0.1);
+	margin: 0 auto;
+}
+
+
+#view-blazena .blazena-auto-textarea {
+	width: 100%;
+	height: 120px;
+	padding: 12px;
+	border: 1px solid var(--border);
+	border-radius: 12px;
+	resize: vertical;
+	resize: none;
+}
+
+#view-blazena .blazena-auto-btn {
+	padding: 10px 16px;
+    border: none;
+    border-radius: 12px;
+    background: var(--color-info);
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    font-size: 82px;
+    display: flex;
+    margin: 0 auto;
+	margin-top: 100px;
+    justify-content: center;
+    align-items: center;
+}
+
 /* ===== MODE SELECTION ===== */
 
 #view-blazena .blazena-mode {

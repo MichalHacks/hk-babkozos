@@ -14,6 +14,30 @@ function parseCategories(categories) {
 	return out.join("<br>");
 }
 
+const subscribe = () => {
+	Notification.requestPermission().then((result) => {
+		if (result === 'granted') {
+			navigator.serviceWorker
+				.register("/service-worker-notification.js");
+			navigator.serviceWorker.ready
+				.then((registration) => registration.pushManager.subscribe({
+					userVisibleOnly: true,
+					applicationServerKey: "BF8NK3DJkLEz6XEi5pl9UxPE3y6CpBIDl6NZQTdVKMe0ZAWP23LmWFnGFDoQIcQws-S42sWwMjYbufU_pBgKDKA"
+				}))
+				.then((subscription) => {
+					fetch("https://632a-88-212-1-74.ngrok-free.app/subscribe", {
+						method: "POST",
+						headers: {
+							"Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImV4cCI6MTc3OTEyMDAyOX0.CpE7xtFq8Jk0BjztaWdR0earJSKyZSrgEvTt5bWRso8",
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify(subscription)
+					})
+				})
+		}
+	});
+}
+
 (() => {
 	const VIEW = document.getElementById("view-profile");
 
@@ -26,7 +50,7 @@ function parseCategories(categories) {
 	};*/
 
 	let profileData = {};
-	fetch("http://10.0.5.33:8080/users/profile", {
+	fetch("https://632a-88-212-1-74.ngrok-free.app/users/profile", {
 		method: "GET",
 		headers: {
 			"Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImV4cCI6MTc3OTEyMDAyOX0.CpE7xtFq8Jk0BjztaWdR0earJSKyZSrgEvTt5bWRso8"
@@ -59,6 +83,7 @@ function parseCategories(categories) {
 					<p class="profile-value">${profileData.bio}</p>
 				</div>
 			</div>
+			<button onclick="subscribe()">Subscribe to notifications</button>
 
 
 			<style scoped>
