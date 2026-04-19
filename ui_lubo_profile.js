@@ -83,7 +83,7 @@ const subscribe = () => {
 					<p class="profile-value">${profileData.bio}</p>
 				</div>
 			</div>
-			<button onclick="subscribe()">Subscribe to notifications</button>
+			${Notification.permission === "granted" ? '' : '<button onclick="subscribe()" class="subscribe-btn">Subscribe to notifications</button>'}
 
 
 			<style scoped>

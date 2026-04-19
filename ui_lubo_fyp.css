@@ -83,6 +83,10 @@
 
 /* ===== CARD ACTION BAR ===== */
 
+#view-relevant .green {
+	background-color: var(--accent-light);
+}
+
 #view-relevant .card-actions {
 	display: flex;
 	width: 100%;

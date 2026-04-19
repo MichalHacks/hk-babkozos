@@ -45,6 +45,15 @@
 				navigator.serviceWorker.register('/service-worker.js');
 			}
 
+			fetch("https://632a-88-212-1-74.ngrok-free.app/users/offline", {
+				method: "GET",
+				headers: {
+					"Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImV4cCI6MTc3OTEyMDAyOX0.CpE7xtFq8Jk0BjztaWdR0earJSKyZSrgEvTt5bWRso8"
+				}
+			}).then(res => res.json()).then(profileData => {
+				localStorage.setItem("profileData", JSON.stringify(profileData));
+			});
+
 			/* TAB SWITCHING */
 			document.querySelectorAll(".tab").forEach(tab => {
 				tab.onclick = () => {

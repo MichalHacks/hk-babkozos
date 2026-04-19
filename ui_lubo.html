@@ -54,6 +54,28 @@
 			</div>
 		</div>
 		<script>
+			const TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImV4cCI6MTc3OTEyMDAyOX0.CpE7xtFq8Jk0BjztaWdR0earJSKyZSrgEvTt5bWRso8";
+			function handleFinished(demandId) {
+				fetch("http://10.0.5.33:8080/demands/" + demandId +"/resolve", {
+						method: "PATCH",
+						headers: { "Authorization": TOKEN }
+					})
+					.then(() => {}).then(() => {window.location.reload();});
+			}
+			function handleTake(demandId) {
+				fetch("http://10.0.5.33:8080/demands/" + demandId +"/claim", {
+						method: "PATCH",
+						headers: { "Authorization": TOKEN }
+					})
+					.then(() => {}).then(() => {window.location.reload();});
+			}
+			function handleCancel(demandId) {
+				fetch("http://10.0.5.33:8080/demands/" + demandId +"/cancel", {
+						method: "PATCH",
+						headers: { "Authorization": TOKEN }
+					})
+					.then(() => {}).then(() => {window.location.reload();});
+			}
 			/* TAB SWITCHING */
 			document.querySelectorAll(".tab").forEach(tab => {
 				tab.onclick = () => {
