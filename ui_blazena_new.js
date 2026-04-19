@@ -93,7 +93,7 @@ function toggleListening() {
 
 		let path = ["root"];
 
-		/* GRID and TABS logic */
+		/* GRID and TABS logicc */
 		const tabs = document.createElement("div");
 		tabs.classList.add("blazena-tabs");
 		CONTAINER.appendChild(tabs);
