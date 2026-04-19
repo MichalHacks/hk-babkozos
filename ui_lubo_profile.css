@@ -67,8 +67,8 @@
 
 #view-profile .profile-label {
 	display: block;
-	font-size: 11px;
-	font-weight: 500;
+	font-size: var(--pad);
+	font-weight: 600;
 	text-transform: uppercase;
 	color: rgba(0, 0, 0, 0.6);
 	margin-bottom: 6px;
