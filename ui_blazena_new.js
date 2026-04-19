@@ -208,12 +208,16 @@
 		CONTAINER.innerHTML = `
 			<div class="blazena-auto">
 				<div class="instructions">
-				<ul>
+				<ol>
 					<li>Press the microphone button</li>
 					<li>Wait for the beep or light</li>
-					<li>Say what you need help with</em></li>
-					<li>Press the button again to send</li>
-				</ul>
+					<li>Describe:</li>
+						<ul>
+							<li>What you need help with</li>
+							<li>What you're willing to offer for the help</li>
+						</ul>
+					<li>Press the microphone button again</li>
+				</ol>
 				</div>
 				<button class="blazena-auto-btn" id="micToggle">
 					<span class="material-symbols-outlined" id="micToggleText">

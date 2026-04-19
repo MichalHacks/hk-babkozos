@@ -57,6 +57,11 @@
 		return `${reward} €`;
 	}
 
+	function formatDistance(m) {
+		if (m < 1000) return `${m} m`;
+		return `${(m / 1000).toFixed(1)} km`;
+	}
+
 	function createCard(item, urls) {
 		const el = document.createElement("div");
 		el.className = item.inProgress ? "card green" : "card";
@@ -82,6 +87,7 @@
 					</div>
 					<div class="right">
 						<div class="meta">${rewardLabel(item.demand.reward)}</div>
+						<div class="meta" style="margin-top:4px"><span class="material-symbols-outlined" style="font-size:13px;vertical-align:middle">near_me</span> ${formatDistance(item.distanceMeters)}</div>
 					</div>
 				</div>
 			</div>

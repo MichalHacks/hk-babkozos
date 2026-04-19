@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b031c81a-e76a-4880-a633-8f3214198ad6" name="Changes" comment="improvements" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;FilkoF&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/MichalHacks/hk-babkozos.git&quot;,
+    &quot;accountId&quot;: &quot;61cdda2b-5077-4f9a-ab09-628a465ae907&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="3CXveONxpBASC23lIZJrVpDY39V" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "javascript.preferred.runtime.type.id": "node",
+    "last_opened_file_path": "C:/Users/Dell 7440/Documents/Osobné/Projekty/Hack Košice 2026/frontend/hk-babkozos",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "configurable.group.appearance",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-WS-253.30387.83" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b031c81a-e76a-4880-a633-8f3214198ad6" name="Changes" comment="" />
+      <created>1776544823723</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1776544823723</updated>
+      <workItem from="1776544824858" duration="4986000" />
+      <workItem from="1776554831165" duration="148000" />
+      <workItem from="1776555003497" duration="4954000" />
+      <workItem from="1776570071779" duration="6984000" />
+      <workItem from="1776577532554" duration="580000" />
+    </task>
+    <task id="LOCAL-00001" summary="improvements">
+      <option name="closed" value="true" />
+      <created>1776553256643</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1776553256643</updated>
+    </task>
+    <task id="LOCAL-00002" summary="improvements">
+      <option name="closed" value="true" />
+      <created>1776553347825</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1776553347825</updated>
+    </task>
+    <task id="LOCAL-00003" summary="improvements">
+      <option name="closed" value="true" />
+      <created>1776553587209</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1776553587209</updated>
+    </task>
+    <task id="LOCAL-00004" summary="improvements">
+      <option name="closed" value="true" />
+      <created>1776553639499</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1776553639499</updated>
+    </task>
+    <task id="LOCAL-00005" summary="improvements">
+      <option name="closed" value="true" />
+      <created>1776557431588</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1776557431588</updated>
+    </task>
+    <task id="LOCAL-00006" summary="improvements">
+      <option name="closed" value="true" />
+      <created>1776566238703</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1776566238703</updated>
+    </task>
+    <task id="LOCAL-00007" summary="improvements">
+      <option name="closed" value="true" />
+      <created>1776567204297</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1776567204297</updated>
+    </task>
+    <task id="LOCAL-00008" summary="improvements">
+      <option name="closed" value="true" />
+      <created>1776571799436</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1776571799436</updated>
+    </task>
+    <task id="LOCAL-00009" summary="improvements">
+      <option name="closed" value="true" />
+      <created>1776573135960</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1776573135960</updated>
+    </task>
+    <task id="LOCAL-00010" summary="improvements">
+      <option name="closed" value="true" />
+      <created>1776573996652</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1776573996652</updated>
+    </task>
+    <task id="LOCAL-00011" summary="improvements">
+      <option name="closed" value="true" />
+      <created>1776575742837</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1776575742837</updated>
+    </task>
+    <task id="LOCAL-00012" summary="improvements">
+      <option name="closed" value="true" />
+      <created>1776577604146</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1776577604146</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="improvements" />
+    <option name="LAST_COMMIT_MESSAGE" value="improvements" />
+  </component>
+</project>
