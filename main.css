@@ -92,7 +92,7 @@ body {
 	justify-content: space-between;
 	align-items: center;
 
-	padding: 10px 16px;
+	padding: 10px 5px;
 	backdrop-filter: var(--blur);
 	background: color-mix(in hsl, var(--accent), transparent var(--opacity_pc));
 	border-bottom: 1px solid var(--border);

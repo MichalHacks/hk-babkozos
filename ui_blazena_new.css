@@ -438,6 +438,7 @@
 	flex-direction: column;
 	gap: 20px;
 	transition: transform 0.12s ease, box-shadow 0.12s ease;
+	width: 100%;
 }
 
 #view-blazena strong {
@@ -498,8 +499,6 @@
 @media (max-width: 600px) {
 	#view-blazena .summary-tab {
 		padding: 15px;
-		width: 100%;
-		max-width: none;
 	}
 	
 	#view-blazena .summary-value {
