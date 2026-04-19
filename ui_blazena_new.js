@@ -111,7 +111,7 @@ function toggleListening() {
 						path.push(key);
 						render();
 					} else {
-						displayManualDescription({ categories: [...(path.slice(1)), key] });
+						displayManualDescription({ categories: item });
 					}
 				});
 			});
@@ -229,6 +229,7 @@ function toggleListening() {
 		photoInput.addEventListener('change', handleFileSelect);
 
 		const uploadedPhotos = [];
+		const uploadedFiles = []
 
 		// Handle file selection and display photos
 		function handleFileSelect(event) {
@@ -243,6 +244,7 @@ function toggleListening() {
 					// Add the image to the uploaded photos list
 					const photoURL = e.target.result;
 					uploadedPhotos.push(photoURL);
+					uploadedFiles.push(file);
 					displayUploadedPhotos();
 				}
 
@@ -279,10 +281,11 @@ function toggleListening() {
 
 		function removePhoto(index) {
 			uploadedPhotos.splice(index, 1);
+			uploadedFiles.splice(index, 1);
 			displayUploadedPhotos(); // Re-render the uploaded photos
 		}
 
-		CONTAINER.querySelector("#next-button").onclick = () => displayManualPrice({ ...data, photos: uploadedPhotos });
+		CONTAINER.querySelector("#next-button").onclick = () => displayManualPrice({ ...data, photos: uploadedPhotos, files: uploadedFiles });
 	}
 
 	function displayManualPrice(data) {
@@ -338,8 +341,10 @@ function toggleListening() {
 		CONTAINER.querySelector("#next-button").onclick = () => {
 			if (String(input.value).match(/^\d+$/) !== null)
 				displayManualFinishForm({ ...data, price: Number(input.value) })
-		};
+		};sendData(data)
 	}
+
+	
 
 	function displayManualFinishForm(data) {
 		CONTAINER.innerHTML = `
@@ -347,7 +352,7 @@ function toggleListening() {
 			<div class="form-container">
 				<div class="summary-tab">
 					<div class="summary-item">
-						<strong>Categories:</strong> <span class="summary-value">${data.categories.join(', ')}</span>
+						<strong>Categories:</strong> <span class="summary-value">${data.categories.label}</span>
 					</div>
 					<div class="summary-item">
 						<strong>Description:</strong> <span class="summary-value">${data.description || "No description provided."}</span>
@@ -378,6 +383,10 @@ function toggleListening() {
 			</div>
 		`;
 
+		
+
+		
+
 		// Add event listener to remove photos
 		CONTAINER.querySelectorAll(".remove-photo-btn").forEach(btn => {
 			btn.addEventListener("click", (e) => {
@@ -385,6 +394,28 @@ function toggleListening() {
 				photoItem.remove();
 				// Optionally, you can also remove the photo from `data.photos` if needed
 			});
+		});
+
+		CONTAINER.querySelector("#next-button").addEventListener("click", () => {
+			console.log("Final data to send:", data);
+			const form = new FormData();
+			data.files.forEach(file => {
+				form.append('files', file);
+			});
+			form.append("description", data.description);
+			form.append("secondaryCategoryId", 1);
+			form.append("latitude", 48.0);
+			form.append("longitude", 17.0);
+			form.append("reward", (data.priceType === "monetary" ? data.price : (data.priceType === "agreement" ? -1 : 0)));
+			fetch("http://10.0.5.33:8080/demands", {
+				method: "POST",
+				headers: {
+					"Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImV4cCI6MTc3OTEyMDAyOX0.CpE7xtFq8Jk0BjztaWdR0earJSKyZSrgEvTt5bWRso8",
+				},
+				body: form
+			})
+			.then(() => {})
+			.then(() => displayAutoManualSelect())
 		});
 	}
 
