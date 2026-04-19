@@ -1,30 +1,55 @@
-let recognition, listening = false, output = '';
-const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-function toggleListening() {
-	if (!SR) { alert('Use Chrome'); return; }
-	if (!listening) {
-		recognition = new SR();
-		recognition.continuous = true;
-		recognition.interimResults = true;
-		recognition.lang = 'sk-SK';
-		recognition.onresult = function(e) {
-			output = '';
-			for (let i = 0; i < e.results.length; i++) {
-				output += e.results[i][0].transcript;
-			}
-		};
-		recognition.onend = function() { if (listening) recognition.start(); };
-		recognition.start();
-		listening = true;
-		document.getElementById('micToggleText').innerText = 'mic_off';
-	} else {
-		recognition.stop();
-		listening = false;
-	}
-}
 
 (() => {
+
+	let recognition, listening = false, output = '';
+	const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+	function toggleListening() {
+		if (!SR) { alert('Use Chrome'); return; }
+		if (!listening) {
+			recognition = new SR();
+			recognition.continuous = true;
+			recognition.interimResults = true;
+			recognition.lang = 'en-US';
+			recognition.onresult = function(e) {
+				output = '';
+				for (let i = 0; i < e.results.length; i++) {
+					output += e.results[i][0].transcript;
+				}
+			};
+			recognition.onend = function() { if (listening) recognition.start(); };
+			recognition.start();
+			listening = true;
+			document.getElementById('micToggleText').innerText = 'mic_off';
+		} else {
+			recognition.stop();
+			document.getElementById('micToggleText').innerText = 'mic';
+			listening = false;
+			const fD = new FormData();
+			fD.append("text", output);
+			fetch("https://632a-88-212-1-74.ngrok-free.app/ttc/demand", {
+				method: "POST",
+				headers: {
+					"Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImV4cCI6MTc3OTEyMDAyOX0.CpE7xtFq8Jk0BjztaWdR0earJSKyZSrgEvTt5bWRso8",
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify({ text: output })
+			}).then(async response => {
+				if (!response.ok) {
+					throw new Error(await response.text());
+				}
+				return response.json();
+			}).catch(error => {
+				document.getElementById('micToggleText').innerText = 'mic';
+				output = '';
+				alert(error.message);
+			})
+			.then(data => {
+				displayManualFinishForm({description: output, categories: { label: data.a.name, id: data.a.id }, priceType: (data.b === -1 ? "agreement" : (data.b === 0 ? "none": "monetary")), price: data.b, photos: [], files: []});
+			})
+		}
+	}
 
 
 	const VIEW = document.getElementById("view-blazena");
@@ -181,13 +206,15 @@ function toggleListening() {
 					<li>Press the button again to send</li>
 				</ul>
 				</div>
-				<button class="blazena-auto-btn" onclick="toggleListening()">
+				<button class="blazena-auto-btn" id="micToggle">
 					<span class="material-symbols-outlined" id="micToggleText">
 					mic
 					</span>
 				</button>
 			</div>
 		`;
+
+		CONTAINER.querySelector("#micToggle").onclick = toggleListening;
 	}
 
 	function displayAutoManualSelect() {
@@ -430,14 +457,21 @@ function toggleListening() {
 			form.append("latitude", 48.0);
 			form.append("longitude", 17.0);
 			form.append("reward", (data.priceType === "monetary" ? data.price : (data.priceType === "agreement" ? -1 : 0)));
-			fetch("http://10.0.5.33:8080/demands", {
+			fetch("/demands", {
 				method: "POST",
 				headers: {
 					"Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImV4cCI6MTc3OTEyMDAyOX0.CpE7xtFq8Jk0BjztaWdR0earJSKyZSrgEvTt5bWRso8",
 				},
 				body: form
 			})
-			.then(() => {})
+			.then(async response => {
+				if (!response.ok) {
+					throw new Error(await response.text());
+				}
+			})
+			.catch(error => {
+				alert(error.message);
+			})
 			.then(() => displayAutoManualSelect())
 		});
 	}

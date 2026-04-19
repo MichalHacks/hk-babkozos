@@ -24,7 +24,15 @@ function getInitials(name) {
 			"Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImV4cCI6MTc3OTEyMDAyOX0.CpE7xtFq8Jk0BjztaWdR0earJSKyZSrgEvTt5bWRso8"
 		}
 	})
-		.then(response => response.json())
+        .then(async response => {
+            if (!response.ok) {
+                throw new Error(await response.text());
+            }
+            return response.json();
+        })
+        .catch(error => {
+            alert(error.message);
+        })
 		.then(data => {
 			profileData = data;
 			console.log("Profile data:", profileData);
