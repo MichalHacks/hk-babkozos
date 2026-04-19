@@ -53,17 +53,20 @@
 				headers: {
 					"Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImV4cCI6MTc3OTEyMDAyOX0.CpE7xtFq8Jk0BjztaWdR0earJSKyZSrgEvTt5bWRso8"
 				}
-			}).then(response => {
+			}).then(async response => {
 				if (!response.ok) {
-					throw new Error(response.text());
+					throw new Error(await response.text());
 				}
 				return response.json();
 			})
 			.catch(error => {
-				alert(error.message);
+				//alert(error.message);
 			})
 			.then(profileData => {
-				localStorage.setItem("profileData", JSON.stringify(profileData));
+				console.log("Profile data:", profileData);
+				if (profileData) {	
+					localStorage.setItem("profileData", JSON.stringify(profileData));
+				}
 			});
 
 			/* TAB SWITCHING */

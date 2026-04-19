@@ -26,7 +26,7 @@ self.addEventListener('fetch', (event) => {
   );
 });*/
 const CACHE_NAME = 'my-app-v1';
-const ASSETS = ['/material_symbols.css', '/main.css', '/ui_blazena.html', '/ui_blazena_profile.js', '/ui_blazena_new.js', '/ui_blazena_relevant.js', '/ui_blazena_new.css', '/ui_lubo_profile.css', '/ui_lubo_fyp.css'];
+const ASSETS = ['/material_symbols.css', '/card_carousel.js', '/logo-black.svg', '/logo-color.svg', '/main.css', '/ui_blazena.html', '/ui_blazena_profile.js', '/ui_blazena_new.js', '/ui_blazena_relevant.js', '/ui_blazena_new.css', '/ui_lubo_profile.css', '/ui_lubo_search.css'];
 
 // Install: cache your app shell
 self.addEventListener('install', event => {

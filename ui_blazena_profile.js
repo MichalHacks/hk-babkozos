@@ -31,7 +31,7 @@ function getInitials(name) {
             return response.json();
         })
         .catch(error => {
-            alert(error.message);
+            //alert(error.message);
         })
 		.then(data => {
 			profileData = data;

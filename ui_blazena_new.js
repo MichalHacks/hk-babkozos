@@ -159,7 +159,11 @@
 						path.push(key);
 						render();
 					} else {
-						displayManualDescription({ categories: item });
+						if (window.navigator.onLine) {
+							displayManualDescription({ categories: item });
+						} else {
+							displayContacts({ categories: item });
+						}
 					}
 				});
 			});
@@ -193,6 +197,11 @@
 
 		/* Initialize the manual */
 		render();
+	}
+
+	function displayContacts(data) {
+		const people = JSON.parse(localStorage.getItem("profileData"))[data.categories.id.toString()];
+		CONTAINER.innerHTML = `Offline mode - contacts will be shown here.<br><br>${people.length !== 0 ? people.map(p => `<div>${p.name} - ${p.phone}</div>`).join("") : "No contacts available for this category."}`;
 	}
 
 	function displayAutomatic() {
@@ -457,7 +466,7 @@
 			form.append("latitude", 48.0);
 			form.append("longitude", 17.0);
 			form.append("reward", (data.priceType === "monetary" ? data.price : (data.priceType === "agreement" ? -1 : 0)));
-			fetch("/demands", {
+			fetch("https://632a-88-212-1-74.ngrok-free.app/demands", {
 				method: "POST",
 				headers: {
 					"Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImV4cCI6MTc3OTEyMDAyOX0.CpE7xtFq8Jk0BjztaWdR0earJSKyZSrgEvTt5bWRso8",
@@ -470,11 +479,14 @@
 				}
 			})
 			.catch(error => {
-				alert(error.message);
+				//alert(error.message);
 			})
 			.then(() => displayAutoManualSelect())
 		});
 	}
-
-	VIEW.init = () => displayAutoManualSelect();
+	if (window.navigator.onLine) {
+		VIEW.init = () => displayAutoManualSelect();
+	} else {
+		VIEW.init = () => displayManualCategories();
+	}
 })();
