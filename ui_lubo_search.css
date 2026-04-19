@@ -1,5 +1,5 @@
 /* ===== SEARCH UI ===== */
-#view-search .search-bar {
+.search-bar {
 	margin-bottom: var(--pad);
 	padding: var(--pad);
 	background: var(--card);
@@ -9,13 +9,13 @@
 	top: 0;
 }
 
-#view-search .search-inner {
+.search-inner {
 	padding: 4px;
 	border-radius: var(--pad);
 	border: 1px solid var(--border);
 }
 
-#view-search .search-inner input {
+.search-inner input {
 	width: 100%;
 	padding: 10px;
 	border: none;
@@ -23,14 +23,14 @@
 	background: transparent;
 }
 
-#view-search .filters {
+.filters {
 	display: flex;
 	gap: 8px;
 	margin-top: 8px;
 	overflow-x: auto;
 }
 
-#view-search .filter {
+.filter {
 	padding: 6px 10px;
 	font-size: 12px;
 	border-radius: 999px;
@@ -39,14 +39,14 @@
 	cursor: pointer;
 }
 
-#view-search .filter.active {
+.filter.active {
 	background: var(--accent);
 	color: white;
 }
 
 /* ===== SEARCH CARDS ===== */
 
-#view-search .card {
+.card {
 	background: var(--card);
 	border: 1px solid var(--border);
 	border-radius: 16px;
@@ -54,73 +54,75 @@
 	overflow: hidden;
 	margin-inline: 10px;
 	display: inline-block;
+	width: calc(100% - 20px);
+  	max-width: 500px;
 }
 
-#view-search .main-img {
+.main-img {
 	width: 100%;
 	height: 180px;
 	object-fit: cover;
 }
 
-#view-search .card-content {
+.card-content {
 	padding: var(--pad);
 }
 
-#view-search .user-row {
+.user-row {
 	display: flex;
 	align-items: center;
 	margin-bottom: 8px;
 }
 
-#view-search .avatar {
+.avatar {
 	width: 32px;
 	height: 32px;
 	border-radius: 50%;
 	margin-right: 8px;
 }
 
-#view-search .username {
+.username {
 	font-size: 14px;
 	font-weight: 500;
 }
 
-#view-search .card-body {
+.card-body {
 	display: flex;
 	gap: var(--pad);
 }
 
-#view-search .left {
+.left {
 	flex: 1;
 }
 
-#view-search .right {
+.right {
 	min-width: 90px;
 	text-align: right;
 	font-size: 12px;
 	color: var(--muted);
 }
 
-#view-search .meta {
+.meta {
 	margin-bottom: 4px;
 }
 
-#view-search .title {
+.title {
 	font-weight: 600;
 }
 
-#view-search .desc {
+.desc {
 	margin: 6px 0;
 	font-size: 14px;
 	color: var(--muted);
 }
 
-#view-search .tags {
+.tags {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 6px;
 }
 
-#view-search .tag {
+.tag {
 	padding: 4px 8px;
 	font-size: 12px;
 	border-radius: 999px;
@@ -129,14 +131,14 @@
 
 /* ===== CARD ACTION BAR ===== */
 
-#view-search .card-actions {
+.card-actions {
 	display: flex;
 	width: 100%;
 	border-top: 1px solid var(--border);
 	background: transparent;
 }
 
-#view-search .action-btn {
+.action-btn {
 	flex: 1;
 	padding: 10px 0;
 	font-size: 12px;
@@ -152,28 +154,116 @@
 }
 
 /* hover swap effect */
-#view-search .action-btn:hover {
+.action-btn:hover {
 	background: var(--accent);
 	color: #fff;
 }
 
 /* active press */
-#view-search .action-btn:active {
+.action-btn:active {
 	filter: brightness(80%);
 }
 
 /* optional subtle separation */
-#view-search .action-btn + .action-btn {
+.action-btn + .action-btn {
 	border-left: 1px solid var(--border);
 }
 
 @media (max-width: 480px) {
-	#view-search .card-body {
+	.card-body {
 		flex-direction: column;
 	}
 
-	#view-search .right {
+	.right {
 		text-align: left;
 		margin-top: 8px;
 	}
+}
+
+/* ===== IMAGE CAROUSEL ===== */
+.img-carousel {
+	position: relative;
+	overflow: hidden;
+	height: 180px;
+	width: 100%;
+}
+
+
+.carousel-track {
+	display: flex;
+	height: 100%;
+	transition: transform 0.3s ease;
+}
+
+.carousel-track .main-img {
+	min-width: 100%;
+	height: 100%;
+	object-fit: cover;
+	flex-shrink: 0;
+	cursor: zoom-in;
+}
+
+.carousel-arrow {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background: rgba(0, 0, 0, 0.35);
+	color: #fff;
+	border: none;
+	border-radius: 50%;
+	width: 28px;
+	height: 28px;
+	font-size: 20px;
+	line-height: 1;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 2;
+}
+
+.carousel-arrow.prev { left: 8px; }
+.carousel-arrow.next { right: 8px; }
+
+.carousel-dots {
+	position: absolute;
+	bottom: 8px;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	gap: 5px;
+	z-index: 2;
+}
+
+.carousel-dot {
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.5);
+	transition: background 0.2s;
+}
+
+.carousel-dot.active { background: #fff; }
+
+/* ===== LIGHTBOX ===== */
+#img-lightbox {
+	display: none;
+	position: fixed;
+	inset: 0;
+	z-index: 1000;
+	background: rgba(0, 0, 0, 0.85);
+	align-items: center;
+	justify-content: center;
+	cursor: zoom-out;
+}
+
+#img-lightbox.open {
+	display: flex;
+}
+
+#img-lightbox img {
+	max-width: 95vw;
+	max-height: 90vh;
+	object-fit: contain;
+	border-radius: 8px;
 }
