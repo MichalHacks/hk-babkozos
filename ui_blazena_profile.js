@@ -18,7 +18,7 @@ function getInitials(name) {
 	};*/
 
 	let profileData = {};
-	fetch("http://10.0.5.33:8080/users/profile", {
+	fetch("https://632a-88-212-1-74.ngrok-free.app/users/profile", {
 		method: "GET",
 		headers: {
 			"Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImV4cCI6MTc3OTEyMDAyOX0.CpE7xtFq8Jk0BjztaWdR0earJSKyZSrgEvTt5bWRso8"

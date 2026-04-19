@@ -1,9 +1,37 @@
+let recognition, listening = false, output = '';
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+function toggleListening() {
+	if (!SR) { alert('Use Chrome'); return; }
+	if (!listening) {
+		recognition = new SR();
+		recognition.continuous = true;
+		recognition.interimResults = true;
+		recognition.lang = 'sk-SK';
+		recognition.onresult = function(e) {
+			output = '';
+			for (let i = 0; i < e.results.length; i++) {
+				output += e.results[i][0].transcript;
+			}
+		};
+		recognition.onend = function() { if (listening) recognition.start(); };
+		recognition.start();
+		listening = true;
+		document.getElementById('micToggleText').innerText = 'mic_off';
+	} else {
+		recognition.stop();
+		listening = false;
+	}
+}
+
 (() => {
+	
+
 	const VIEW = document.getElementById("view-blazena");
+	const CONTAINER = VIEW.querySelector("#tab-container");
 
 	/* ===== DISPLAY MANUAL FUNCTION ===== */
 	function displayManual() {
-		const CONTAINER = VIEW.querySelector("#tab-container");
 		CONTAINER.innerHTML = "";
 
 		/* ===== HIERARCHICAL DATA TREE ===== */
@@ -112,13 +140,32 @@
 			});
 		}
 
+	
 		/* Initialize the manual */
 		render();
 	}
 
+	function displayAutomatic() {
+		CONTAINER.innerHTML = `
+			<div class="blazena-auto">
+				<div class="instructions">
+				<ul>
+					<li>Press the microphone button</li>
+					<li>Wait for the beep or light</li>
+					<li>Say what you need help with</em></li>
+					<li>Press the button again to send</li>
+				</ul>
+				</div>
+				<button class="blazena-auto-btn" onclick="toggleListening()">
+					<span class="material-symbols-outlined" id="micToggleText">
+					mic
+					</span>
+				</button>
+			</div>
+		`;
+	}
+
 	function displayAutoManualSelect() {
-		const CONTAINER = VIEW.querySelector("#tab-container");
-		
 		CONTAINER.innerHTML = `
 			<div class="blazena-mode" id="blazena-mode">
 				<div class="blazena-mode-grid">
@@ -139,7 +186,7 @@
 			if (x.dataset.mode == "manual")
 				x.onclick = displayManual;
 			if (x.dataset.mode == "auto")
-				x.onclick = () => alert("Not implemented");
+				x.onclick = displayAutomatic;
 		})
 	}
 
