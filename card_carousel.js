@@ -14,7 +14,7 @@ function _openLightbox(src) {
 window.buildCarousel = function(urls) {
 	const wrap = document.createElement("div");
 	wrap.className = "img-carousel";
-	if (!urls || urls.length === 0) return wrap;
+	if (!urls || urls.length === 0) return null;
 
 	let idx = 0;
 

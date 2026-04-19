@@ -19,7 +19,8 @@
 	function createCard(item, urls) {
 		const el = document.createElement("div");
 		el.className = "card";
-		el.appendChild(buildCarousel(urls));
+		const carousel = buildCarousel(urls);
+		if (carousel) el.appendChild(carousel);
 		el.insertAdjacentHTML("beforeend", `
 			<div class="card-content">
 				<div class="user-row">
@@ -59,7 +60,7 @@
 		.then(data => {
 			console.log("Relevant data:", data);
 			data.forEach(item => {
-				const imagePromises = item.images.map(image =>
+				const imagePromises = (item.images || []).map(image =>
 					fetch("http://10.0.5.33:8080/images/" + image.filename, {
 						headers: { "Authorization": TOKEN }
 					})

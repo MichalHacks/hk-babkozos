@@ -1,4 +1,6 @@
 (() => {
+	const TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImV4cCI6MTc3OTEyMDAyOX0.CpE7xtFq8Jk0BjztaWdR0earJSKyZSrgEvTt5bWRso8";
+	const BASE = "http://10.0.5.33:8080";
 	const VIEW = document.getElementById("view-search");
 
 	VIEW.insertAdjacentHTML("afterbegin", `
@@ -12,55 +14,28 @@
 				color: #fff !important;
 			}
 		</style>
-	`)
+	`);
 
-	/* CARD GENERATOR */
-	const data = [{
-		title: "Frontend UI Help",
-		username: "john_doe",
-		desc: "Looking for help with responsive layout.",
-		tags: ["tech", "ui"],
-		location: "Košice",
-		contact: "john@mail.com",
-		extra: "Remote",
-		images: ["https://picsum.photos/400/200", "https://picsum.photos/400/210"],
-		user: "https://i.pravatar.cc/40?img=1"
-	}, {
-		title: "Design Feedback",
-		username: "anna_design",
-		desc: "Need critique on mobile app.",
-		tags: ["design"],
-		location: "Prague",
-		contact: "anna@mail.com",
-		extra: "Freelance",
-		images: ["https://picsum.photos/400/201", "https://picsum.photos/400/211", "https://picsum.photos/400/220"],
-		user: "https://i.pravatar.cc/40?img=2"
-	}];
-
-	function createCard(item) {
+	function createCard(item, urls) {
 		const el = document.createElement("div");
 		el.className = "card";
-		el.appendChild(buildCarousel(item.images));
+		const carousel = buildCarousel(urls);
+		if (carousel) el.appendChild(carousel);
 		el.insertAdjacentHTML("beforeend", `
 			<div class="card-content">
 				<div class="user-row">
-					<img class="avatar" src="${item.user}">
-					<div class="username">${item.username}</div>
+					<img class="avatar" src="https://i.pravatar.cc/40?img=2">
+					<div class="username">${item.user.name}</div>
 				</div>
 
 				<div class="card-body">
 					<div class="left">
-						<div class="title">${item.title}</div>
-						<div class="desc">${item.desc}</div>
-						<div class="tags">
-							${item.tags.map(t => `<div class="tag">${t}</div>`).join("")}
-						</div>
+						<div class="title">${item.secondaryCategory.name}</div>
+						<div class="desc">${item.description}</div>
 					</div>
 
 					<div class="right">
-						<div class="meta">${item.location}</div>
-						<div class="meta">${item.contact}</div>
-						<div class="meta">${item.extra}</div>
+						<div class="meta">${item.user.phone}</div>
 					</div>
 				</div>
 			</div>
@@ -71,42 +46,41 @@
 		return el;
 	}
 
-	/* SEARCH */
-	const searchInput = document.getElementById("searchInput");
-	const searchFilters = document.querySelectorAll(".filter");
-	let activeTag = null;
+	function fetchAndRender(category) {
+		const container = VIEW.querySelector("#search-list");
+		container.innerHTML = "";
+		const url = category
+			? `${BASE}/demands/category/${category}`
+			: `${BASE}/demands`;
+		fetch(url, { headers: { "Authorization": TOKEN } })
+			.then(r => r.json())
+			.then(data => {
+				data.forEach(item => {
+					const imagePromises = (item.images || []).map(image =>
+						fetch(`${BASE}/images/${image.filename}`, { headers: { "Authorization": TOKEN } })
+							.then(r => r.blob())
+							.then(blob => URL.createObjectURL(blob))
+					);
+					Promise.all(imagePromises).then(urls => {
+						container.appendChild(createCard(item, urls));
+					});
+				});
+			});
+	}
+
+	const searchFilters = VIEW.querySelectorAll(".filter");
 	searchFilters.forEach(f => {
 		f.onclick = () => {
 			searchFilters.forEach(x => x.classList.remove("active"));
 			f.classList.add("active");
-			activeTag = f.innerText;
-			filter();
+			fetchAndRender(f.dataset.cat);
 		};
 	});
-	searchInput.oninput = filter;
 
-	function filter() {
-		const term = searchInput.value.toLowerCase();
-		const filtered = data.filter(item => {
-			const matchText = item.title.toLowerCase().includes(term);
-			const matchTag = !activeTag || item.tags.includes(activeTag);
-			return matchText && matchTag;
-		});
-		const container = VIEW.querySelector("#search-list");
-		container.innerHTML = "";
-		filtered.forEach(item => container.appendChild(createCard(item)));
-	}
-
-	/* INITIALIZE */
 	function init() {
-		// reset search
 		searchFilters.forEach(f => f.classList.remove("active"));
-		searchInput.value = "";
-		activeTag = null;
-
-		const container = VIEW.querySelector("#search-list");
-		container.innerHTML = "";
-		data.forEach(item => container.appendChild(createCard(item)));
+		VIEW.querySelector(".filter[data-cat='']").classList.add("active");
+		fetchAndRender(null);
 	}
 
 	VIEW.init = init;
