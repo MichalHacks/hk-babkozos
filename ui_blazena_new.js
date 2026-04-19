@@ -426,7 +426,7 @@ function toggleListening() {
 				form.append('files', file);
 			});
 			form.append("description", data.description);
-			form.append("secondaryCategoryId", 1);
+			form.append("secondaryCategoryId", data.categories.id);
 			form.append("latitude", 48.0);
 			form.append("longitude", 17.0);
 			form.append("reward", (data.priceType === "monetary" ? data.price : (data.priceType === "agreement" ? -1 : 0)));
